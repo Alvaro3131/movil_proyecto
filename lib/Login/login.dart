@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:movil_proyecto/routes/routes.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -8,7 +8,7 @@ class LoginScreen extends StatelessWidget {
     return Scaffold(
       body: LayoutBuilder(
         builder: (context, constraints) {
-          return LoginMobile();
+          return const LoginMobile();
         },
       ),
     );
@@ -16,6 +16,8 @@ class LoginScreen extends StatelessWidget {
 }
 
 class LoginMobile extends StatefulWidget {
+  const LoginMobile({super.key});
+
   @override
   State<LoginMobile> createState() => _LoginMobile();
 }
@@ -24,21 +26,15 @@ class _LoginMobile extends State<LoginMobile> {
   String infotext = "Informe sus datos";
   TextEditingController username = TextEditingController();
   TextEditingController password = TextEditingController();
-  int _counter = 0;
+
   String user = 'alvaro.alvac@gmail.com';
   String pass = '1234';
   bool _isObscure = true;
   bool _isVisible = false;
   void validar() {
     if (user == username.text && pass == password.text) {
-      setState(() {
-        infotext = "Validado";
-      });
-    } else {
-      setState(() {
-        infotext = "No entrar a donde no le compete";
-      });
-    }
+      Navigator.of(context).pop(RouterManager.homepage);
+    } else {}
   }
 
   Widget buildTextField(String text, TextEditingController c, TextInputType d) {

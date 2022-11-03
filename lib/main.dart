@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movil_proyecto/routes/routes.dart';
 
 import './Login/login.dart';
 
@@ -11,13 +12,9 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const LoginScreen(), //<--
+    return const MaterialApp(
+      initialRoute: RouterManager.login,
+      onGenerateRoute: RouterManager.generateRoute,
     );
   }
 }
