@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movil_proyecto/routes/routes.dart';
+import 'package:movil_proyecto/Screens/Home.dart';
 
 import './Login/login.dart';
 
@@ -12,9 +12,15 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      initialRoute: RouterManager.login,
-      onGenerateRoute: RouterManager.generateRoute,
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      initialRoute: '/',
+      routes: {
+        // Cuando naveguemos hacia la ruta "/", crearemos el Widget FirstScreen
+        '/': (context) => LoginScreen(),
+        // Cuando naveguemos hacia la ruta "/second", crearemos el Widget SecondScreen
+        '/home': (context) => Homepage(),
+      },
     );
   }
 }
