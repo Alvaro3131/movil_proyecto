@@ -1,15 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:footer/footer.dart';
 import 'package:footer/footer_view.dart';
+import 'package:movil_proyecto/Screens/datosencargado.dart';
 
-class Homepage extends StatefulWidget {
-  const Homepage({super.key});
-
-  @override
-  State<Homepage> createState() => _HomepageState();
-}
-
-class _HomepageState extends State<Homepage> {
+class Homepage extends StatelessWidget {
   String user = 'Alvaro Alva Chipana';
   String ciclo = '6';
   @override
@@ -26,6 +20,76 @@ class _HomepageState extends State<Homepage> {
             color: Colors.white,
           ),
         ],
+      ),
+      body: Card(
+        child: Center(
+          child: Column(
+            children: <Widget>[
+              Padding(padding: EdgeInsets.fromLTRB(0, 0, 0, 20)),
+              SizedBox(
+                height: 150,
+                width: 180,
+                child: ElevatedButton(
+                  child: Center(
+                    child: Column(children: <Widget>[
+                      Icon(
+                        Icons.app_registration,
+                        color: Colors.white,
+                        size: 100,
+                      ),
+                      Text(
+                        "REGISTRAR SOLICITUD DE PRÁCTICAS",
+                        textAlign: TextAlign.center,
+                      ),
+                    ]),
+                  ),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => DatosEncargadoRoute()),
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color.fromRGBO(1, 71, 118, 1),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(18.0),
+                child: SizedBox(
+                  height: 150,
+                  width: 180,
+                  child: ElevatedButton(
+                    child: Center(
+                      child: Column(children: <Widget>[
+                        Icon(
+                          Icons.remove_red_eye_sharp,
+                          color: Colors.white,
+                          size: 100,
+                        ),
+                        Text(
+                          "REVISAR MIS SOLICITUDES",
+                          textAlign: TextAlign.center,
+                        ),
+                      ]),
+                    ),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => DatosEncargadoRoute()),
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color.fromARGB(255, 112, 39, 39),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
       drawer: Drawer(
           backgroundColor: Color.fromRGBO(1, 71, 118, 1),
