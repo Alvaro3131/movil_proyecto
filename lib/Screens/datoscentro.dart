@@ -1,19 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:movil_proyecto/Screens/planactividades.dart';
 
-class DatosCentroRoute extends StatelessWidget {
+class DatosCentroRoute extends StatefulWidget {
+  const DatosCentroRoute({super.key});
+
+  @override
+  State<DatosCentroRoute> createState() => _DatosCentroRouteState();
+}
+
+class _DatosCentroRouteState extends State<DatosCentroRoute> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 255, 255, 255),
+      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
       appBar: AppBar(
-        backgroundColor: Color.fromRGBO(1, 71, 118, 1),
-        title: Text("Registrar Solicitud"),
+        backgroundColor: const Color.fromRGBO(1, 71, 118, 1),
+        title: const Text("Registrar Solicitud"),
       ),
       body: Center(
         child: Column(
           children: <Widget>[
-            Divider(),
+            const Divider(),
             const Text(
               'DATOS DEL CENTRO DE PRÁCTICAS',
               textAlign: TextAlign.left,

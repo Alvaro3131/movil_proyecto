@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:movil_proyecto/Screens/datoscentro.dart';
 
 class DatosEncargadoRoute extends StatefulWidget {
+  const DatosEncargadoRoute({super.key});
+
   @override
   State<DatosEncargadoRoute> createState() => _DatosEncargadoRouteState();
 }
 
 class _DatosEncargadoRouteState extends State<DatosEncargadoRoute> {
   String _vista = 'Selecione una Opción';
-  var _lista = [
+  final _lista = [
     'Selecione una Opción',
     'Prácticas Sector Público',
     'Prácticas Sector Privado'
@@ -18,10 +20,10 @@ class _DatosEncargadoRouteState extends State<DatosEncargadoRoute> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: Color.fromARGB(255, 255, 255, 255),
+      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
       appBar: AppBar(
-        backgroundColor: Color.fromRGBO(1, 71, 118, 1),
-        title: Text("Registrar Solicitud"),
+        backgroundColor: const Color.fromRGBO(1, 71, 118, 1),
+        title: const Text("Registrar Solicitud"),
       ),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
@@ -43,18 +45,18 @@ class _DatosEncargadoRouteState extends State<DatosEncargadoRoute> {
                 decoration: BoxDecoration(
                   color: Colors.white,
                   border: Border.all(
-                    color: Color.fromARGB(255, 53, 53, 53),
+                    color: const Color.fromARGB(255, 53, 53, 53),
                   ),
-                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                  borderRadius: const BorderRadius.all(Radius.circular(10)),
                 ),
                 child: Column(children: [
                   DropdownButton(
                     items: _lista.map((String a) {
                       return DropdownMenuItem(value: a, child: Text(a));
                     }).toList(),
-                    onChanged: (_value) => {
+                    onChanged: (value) => {
                       setState(() {
-                        _vista = _value.toString();
+                        _vista = value.toString();
                       })
                     },
                     hint: Text(_vista),

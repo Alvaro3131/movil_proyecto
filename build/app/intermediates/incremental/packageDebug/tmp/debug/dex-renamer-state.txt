@@ -1,4 +1,4 @@
-#Sun Nov 06 20:11:53 COT 2022
-base.0=D\:\\Programacion\\Flutter\\movil_proyecto\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
+#Mon Nov 07 15:43:26 PET 2022
+base.0=/home/elveex/UPeU 2022-2/Aplicaciones Móviles/Nutrition/movil_proyecto/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
 renamed.0=classes.dex
 path.0=classes.dex

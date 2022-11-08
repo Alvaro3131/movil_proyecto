@@ -2,24 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:movil_proyecto/Screens/Home.dart';
 
 class PlanActividadesRoute extends StatefulWidget {
+  const PlanActividadesRoute({super.key});
+
   @override
   State<PlanActividadesRoute> createState() => _PlanActividadesRouteState();
 }
 
 class _PlanActividadesRouteState extends State<PlanActividadesRoute> {
   String _fecha = '';
-  TextEditingController _textController = new TextEditingController();
+  final TextEditingController _textController = TextEditingController();
 
   String _fechaf = '';
-  TextEditingController _textControllerf = new TextEditingController();
+  final TextEditingController _textControllerf = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 255, 255, 255),
+      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
       appBar: AppBar(
-        backgroundColor: Color.fromRGBO(1, 71, 118, 1),
-        title: Text("Registrar Solicitud"),
+        backgroundColor: const Color.fromRGBO(1, 71, 118, 1),
+        title: const Text("Registrar Solicitud"),
       ),
       body: Center(
         child: Column(
@@ -92,24 +94,24 @@ class _PlanActividadesRouteState extends State<PlanActividadesRoute> {
         hintText: 'Seleccione la fecha de inicio aquí',
         labelText: 'Seleccione la Fecha Inicio',
         // helperText: 'Seleccione solo la fecha de nacimiento',
-        suffixIcon: Icon(Icons.calendar_today),
+        suffixIcon: const Icon(Icons.calendar_today),
       ),
       onTap: () {
-        FocusScope.of(context).requestFocus(new FocusNode());
+        FocusScope.of(context).requestFocus(FocusNode());
         _selecDateStart(context);
       },
     );
   }
 
   _selecDateStart(BuildContext context) async {
-    DateTime? _selecday = await showDatePicker(
+    DateTime? selecday = await showDatePicker(
         context: context,
         initialDate: DateTime.now(),
         firstDate: DateTime(2019),
         lastDate: DateTime(2029));
-    if (_selecday != null) {
+    if (selecday != null) {
       setState(() {
-        _fecha = _selecday.toString();
+        _fecha = selecday.toString();
         _textController.text = _fecha;
       });
     }
