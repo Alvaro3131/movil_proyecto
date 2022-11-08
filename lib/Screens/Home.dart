@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:footer/footer.dart';
 import 'package:footer/footer_view.dart';
 import 'package:movil_proyecto/Screens/datosencargado.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Homepage extends StatelessWidget {
   String user = 'Alvaro Alva Chipana';
@@ -226,14 +227,15 @@ class Homepage extends StatelessWidget {
                       Flexible(
                         flex: 2,
                         child: Container(
+                          margin: EdgeInsets.only(top: 20),
                           child: CircleAvatar(
                             backgroundImage: AssetImage('assets/profile.png'),
-                            radius: 80,
+                            radius: 70,
                           ),
                         ),
                       ),
                       Flexible(
-                        flex: 6,
+                        flex: 5,
                         child: Container(
                           child: Scaffold(
                               backgroundColor: Colors.transparent,
@@ -241,9 +243,58 @@ class Homepage extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.stretch,
                                 children: <Widget>[
                                   Container(
-                                    margin: EdgeInsets.only(top: 30, left: 20),
+                                    margin: EdgeInsets.only(top: 20, left: 20),
                                     child: Text(
-                                      'Nombre: $user',
+                                      'Nombre:',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 19,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    margin: EdgeInsets.only(left: 20),
+                                    child: Text(
+                                      '$user',
+                                      style: TextStyle(
+                                          color: Colors.white, fontSize: 19),
+                                    ),
+                                  ),
+                                  Container(
+                                    margin: EdgeInsets.only(top: 20, left: 20),
+                                    child: Text(
+                                      'Ciclo:',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 19,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    margin: EdgeInsets.only(left: 20),
+                                    child: Text(
+                                      '$ciclo',
+                                      style: TextStyle(
+                                          color: Colors.white, fontSize: 19),
+                                    ),
+                                  ),
+                                  Container(
+                                    margin: EdgeInsets.only(top: 20, left: 20),
+                                    child: Text(
+                                      'Codigo:',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 19,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    margin: EdgeInsets.only(left: 20),
+                                    child: Text(
+                                      '202011227',
                                       style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 19,
@@ -251,27 +302,24 @@ class Homepage extends StatelessWidget {
                                     ),
                                   ),
                                   Container(
-                                    margin: EdgeInsets.only(top: 30, left: 20),
+                                    margin: EdgeInsets.only(top: 20, left: 20),
                                     child: Text(
-                                      'Ciclo: $ciclo',
+                                      'DNI:',
                                       style: TextStyle(
-                                          color: Colors.white, fontSize: 19),
+                                        color: Colors.white,
+                                        fontSize: 19,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
                                   ),
                                   Container(
-                                    margin: EdgeInsets.only(top: 30, left: 20),
+                                    margin: EdgeInsets.only(left: 20),
                                     child: Text(
-                                      'Codigo: 202011227',
+                                      '73057953',
                                       style: TextStyle(
-                                          color: Colors.white, fontSize: 19),
-                                    ),
-                                  ),
-                                  Container(
-                                    margin: EdgeInsets.only(top: 30, left: 20),
-                                    child: Text(
-                                      'DNI: 73057953',
-                                      style: TextStyle(
-                                          color: Colors.white, fontSize: 19),
+                                        color: Colors.white,
+                                        fontSize: 19,
+                                      ),
                                     ),
                                   ),
                                 ],
@@ -298,6 +346,32 @@ class Homepage extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(10)),
                                 backgroundColor:
                                     Color.fromRGBO(197, 182, 52, 1)),
+                          ),
+                        ),
+                      ),
+                      Divider(
+                        color: Colors.transparent,
+                      ),
+                      Flexible(
+                        flex: 1,
+                        child: Center(
+                          child: Container(
+                            margin: EdgeInsets.only(top: 20),
+                            child: GestureDetector(
+                                onTap: () async {
+                                  final Uri url = Uri.parse(
+                                      'https://lamb-learning.upeu.edu.pe/pages/dashboard');
+                                  if (!await launchUrl(
+                                    url,
+                                    mode: LaunchMode.externalApplication,
+                                  )) {
+                                    throw 'Could not launch $url';
+                                  }
+                                },
+                                child: Image.asset(
+                                  'assets/lamb.png',
+                                  height: 70,
+                                )),
                           ),
                         ),
                       ),
