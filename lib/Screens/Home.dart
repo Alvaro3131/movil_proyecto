@@ -227,7 +227,8 @@ class Homepage extends StatelessWidget {
                       Flexible(
                         flex: 2,
                         child: Container(
-                          margin: EdgeInsets.only(top: 20),
+                          margin: EdgeInsets.only(
+                              top: MediaQuery.of(context).size.height / 50),
                           child: CircleAvatar(
                             backgroundImage: AssetImage('assets/profile.png'),
                             radius: 70,
@@ -357,6 +358,7 @@ class Homepage extends StatelessWidget {
                         child: Center(
                           child: Container(
                             margin: EdgeInsets.only(top: 20),
+                            padding: EdgeInsets.only(right: 10),
                             child: GestureDetector(
                                 onTap: () async {
                                   final Uri url = Uri.parse(
@@ -370,7 +372,7 @@ class Homepage extends StatelessWidget {
                                 },
                                 child: Image.asset(
                                   'assets/lamb.png',
-                                  height: 70,
+                                  height: 60,
                                 )),
                           ),
                         ),
