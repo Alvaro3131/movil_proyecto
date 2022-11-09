@@ -1,33 +1,33 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="D:\Programacion\Flutter\movil_proyecto\windows\runner\flutter_window.cpp">
+    <ClCompile Include="D:\githubdeskop\movil_proyecto\windows\runner\flutter_window.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\Programacion\Flutter\movil_proyecto\windows\runner\main.cpp">
+    <ClCompile Include="D:\githubdeskop\movil_proyecto\windows\runner\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\Programacion\Flutter\movil_proyecto\windows\runner\utils.cpp">
+    <ClCompile Include="D:\githubdeskop\movil_proyecto\windows\runner\utils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\Programacion\Flutter\movil_proyecto\windows\runner\win32_window.cpp">
+    <ClCompile Include="D:\githubdeskop\movil_proyecto\windows\runner\win32_window.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\Programacion\Flutter\movil_proyecto\windows\flutter\generated_plugin_registrant.cc">
+    <ClCompile Include="D:\githubdeskop\movil_proyecto\windows\flutter\generated_plugin_registrant.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="D:\Programacion\Flutter\movil_proyecto\windows\runner\CMakeLists.txt" />
+    <CustomBuild Include="D:\githubdeskop\movil_proyecto\windows\runner\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="D:\Programacion\Flutter\movil_proyecto\windows\runner\Runner.rc">
+    <ResourceCompile Include="D:\githubdeskop\movil_proyecto\windows\runner\Runner.rc">
       <Filter>Source Files</Filter>
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{D89DAF99-5412-391D-888C-34128290FE18}</UniqueIdentifier>
+      <UniqueIdentifier>{0CF34549-B9B8-3911-B7C8-A65C6C37E4AF}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -1,4 +1,4 @@
-# Install script for directory: D:/Programacion/Flutter/movil_proyecto/windows/flutter/ephemeral/.plugin_symlinks/url_launcher_windows/windows
+# Install script for directory: D:/githubdeskop/movil_proyecto/windows/flutter/ephemeral/.plugin_symlinks/url_launcher_windows/windows
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

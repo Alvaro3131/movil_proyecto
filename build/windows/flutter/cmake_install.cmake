@@ -1,4 +1,4 @@
-# Install script for directory: D:/Programacion/Flutter/movil_proyecto/windows/flutter
+# Install script for directory: D:/githubdeskop/movil_proyecto/windows/flutter
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

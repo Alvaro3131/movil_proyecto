@@ -1,28 +1,28 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="D:\Programacion\Flutter\movil_proyecto\windows\flutter\ephemeral\cpp_client_wrapper\core_implementations.cc">
+    <ClCompile Include="D:\githubdeskop\movil_proyecto\windows\flutter\ephemeral\cpp_client_wrapper\core_implementations.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\Programacion\Flutter\movil_proyecto\windows\flutter\ephemeral\cpp_client_wrapper\standard_codec.cc">
+    <ClCompile Include="D:\githubdeskop\movil_proyecto\windows\flutter\ephemeral\cpp_client_wrapper\standard_codec.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\Programacion\Flutter\movil_proyecto\windows\flutter\ephemeral\cpp_client_wrapper\flutter_engine.cc">
+    <ClCompile Include="D:\githubdeskop\movil_proyecto\windows\flutter\ephemeral\cpp_client_wrapper\flutter_engine.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\Programacion\Flutter\movil_proyecto\windows\flutter\ephemeral\cpp_client_wrapper\flutter_view_controller.cc">
+    <ClCompile Include="D:\githubdeskop\movil_proyecto\windows\flutter\ephemeral\cpp_client_wrapper\flutter_view_controller.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="D:\Programacion\Flutter\movil_proyecto\windows\flutter\CMakeLists.txt" />
+    <CustomBuild Include="D:\githubdeskop\movil_proyecto\windows\flutter\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="CMake Rules">
-      <UniqueIdentifier>{25FD9528-CF18-32FE-B823-FB72E3D08295}</UniqueIdentifier>
+      <UniqueIdentifier>{777FA9E6-A5E5-3340-AA55-7F20AC62CDD6}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{D89DAF99-5412-391D-888C-34128290FE18}</UniqueIdentifier>
+      <UniqueIdentifier>{0CF34549-B9B8-3911-B7C8-A65C6C37E4AF}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
