@@ -255,7 +255,7 @@ class Homepage extends StatelessWidget {
                                     ),
                                   ),
                                   Container(
-                                    margin: EdgeInsets.only(left: 20),
+                                    margin: EdgeInsets.only(left: 20, top: 5),
                                     child: Text(
                                       '$user',
                                       style: TextStyle(
@@ -274,7 +274,7 @@ class Homepage extends StatelessWidget {
                                     ),
                                   ),
                                   Container(
-                                    margin: EdgeInsets.only(left: 20),
+                                    margin: EdgeInsets.only(left: 20, top: 5),
                                     child: Text(
                                       '$ciclo',
                                       style: TextStyle(
@@ -293,7 +293,7 @@ class Homepage extends StatelessWidget {
                                     ),
                                   ),
                                   Container(
-                                    margin: EdgeInsets.only(left: 20),
+                                    margin: EdgeInsets.only(left: 20, top: 5),
                                     child: Text(
                                       '202011227',
                                       style: TextStyle(
@@ -314,7 +314,7 @@ class Homepage extends StatelessWidget {
                                     ),
                                   ),
                                   Container(
-                                    margin: EdgeInsets.only(left: 20),
+                                    margin: EdgeInsets.only(left: 20, top: 5),
                                     child: Text(
                                       '73057953',
                                       style: TextStyle(
