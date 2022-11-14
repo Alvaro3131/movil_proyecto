@@ -11,10 +11,44 @@ class DatosEncargadoRoute extends StatefulWidget {
 class _DatosEncargadoRouteState extends State<DatosEncargadoRoute> {
   String _vista = 'Selecione una Opción';
   final _lista = [
-    'Selecione una Opción',
-    'Prácticas Sector Público',
-    'Prácticas Sector Privado'
+    'Seleccione una Opción',
+    'Prácticas Comunitarias',
+    'Prácticas Clínicas'
   ];
+
+  String gender = "Selecione el tipo de prácticas";
+
+  final _formKey = GlobalKey<FormState>();
+
+  Widget titlebox(String title) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 18.0),
+      child: Text(
+        title,
+        textAlign: TextAlign.left,
+        overflow: TextOverflow.ellipsis,
+        style: TextStyle(
+            fontWeight: FontWeight.bold, color: Color.fromRGBO(1, 71, 118, 1)),
+      ),
+    );
+  }
+
+  Widget textbox(String description) {
+    return Padding(
+      padding: const EdgeInsets.only(left: 12, right: 12, top: 15),
+      child: TextFormField(
+        validator: (value) => value!.isEmpty ? "Campo requerido" : null,
+        decoration: InputDecoration(
+          fillColor: Color.fromARGB(255, 255, 255, 255),
+          filled: true,
+          hintText: description,
+          labelText: description,
+          suffixIcon: Icon(Icons.verified_user_sharp),
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,158 +61,69 @@ class _DatosEncargadoRouteState extends State<DatosEncargadoRoute> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
-        child: Center(
-          child: Column(
-            children: <Widget>[
-              const Text(
-                'TIPO DE PRÁCTICAS',
-                textAlign: TextAlign.left,
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Color.fromRGBO(1, 71, 118, 1)),
-              ),
-              Container(
-                margin: const EdgeInsets.all(10.0),
-                height: 50.0,
-                width: 240.0,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  border: Border.all(
-                    color: const Color.fromARGB(255, 53, 53, 53),
-                  ),
-                  borderRadius: const BorderRadius.all(Radius.circular(10)),
-                ),
-                child: Column(children: [
-                  DropdownButton(
-                    items: _lista.map((String a) {
-                      return DropdownMenuItem(value: a, child: Text(a));
-                    }).toList(),
-                    onChanged: (value) => {
+        child: Form(
+          key: _formKey,
+          child: Center(
+            child: Column(
+              children: <Widget>[
+                titlebox("TIPO DE PRÁCTICAS"),
+                Padding(
+                  padding: const EdgeInsets.all(18.0),
+                  child: DropdownButtonFormField(
+                    validator: (value) =>
+                        value == "Selecione el tipo de prácticas"
+                            ? "Campo requerido"
+                            : null,
+                    onChanged: (String? v) {
                       setState(() {
-                        _vista = value.toString();
-                      })
+                        gender = v!;
+                      });
                     },
-                    hint: Text(_vista),
-                    // icon: const Icon(
-                    //   Icons.arrow_downward,
-                    //   size: 15,
-                    // ),
-                    underline: Container(height: 0),
-                    borderRadius: BorderRadius.circular(20),
-                    elevation: 30,
-                    style: const TextStyle(
-                      color: Color.fromARGB(255, 71, 71, 71),
-                    ),
-                  ),
-                ]),
-              ),
-
-              Padding(
-                padding: const EdgeInsets.only(top: 18.0),
-                child: const Text(
-                  'DATOS DEL ENCARGADO',
-                  textAlign: TextAlign.left,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Color.fromRGBO(1, 71, 118, 1)),
-                ),
-              ),
-              SizedBox(
-                //height: 60.0,
-                child: Padding(
-                  padding: const EdgeInsets.only(
-                    left: 12,
-                    right: 12,
-                    top: 10,
-                  ),
-                  child: TextFormField(
-                    enableInteractiveSelection: false,
-                    textCapitalization: TextCapitalization.characters,
-                    decoration: InputDecoration(
-                      fillColor: Color.fromARGB(255, 255, 255, 255),
-                      filled: true,
-                      hintText: 'Nombres y Apellidos',
-                      labelText: 'Nombres y Apellidos',
-                      suffixIcon: Icon(Icons.person),
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                    ),
-                    // controller: username,
-                    // onSubmitted: (String valor) {
-                    //   setState(() {
-                    //     nombre = valor;
-                    //   });
-                    // },
+                    value: gender,
+                    items: [
+                      "Selecione el tipo de prácticas",
+                      "Prácticas Comunitarias",
+                      "Prácticas Clínicas"
+                    ]
+                        .map((v) => DropdownMenuItem(
+                              child: Text(v),
+                              value: v,
+                            ))
+                        .toList(),
                   ),
                 ),
-              ),
-              SizedBox(
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 12, right: 12, top: 10),
-                  child: TextFormField(
-                    enableInteractiveSelection: false,
-                    textCapitalization: TextCapitalization.characters,
-                    decoration: InputDecoration(
-                      fillColor: Color.fromARGB(255, 255, 255, 255),
-                      filled: true,
-                      hintText: 'Número de DNI',
-                      labelText: 'DNI',
-                      suffixIcon: Icon(Icons.badge),
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                    ),
+                titlebox("DATOS DEL NUTRICIONISTA"),
+                Divider(
+                  thickness: 3,
+                  color: Colors.transparent,
+                ),
+                textbox("Nombres y Apellidos"),
+                textbox("Nro de DNI"),
+                textbox("Correo Electrónico"),
+                Divider(
+                  thickness: 3,
+                  color: Colors.transparent,
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      print("Datos Completos");
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => DatosCentroRoute()),
+                      );
+                    } else {
+                      print("Datos Incompletos");
+                    }
+                  },
+                  child: Text('Siguiente'),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color.fromRGBO(1, 71, 118, 1),
                   ),
                 ),
-              ),
-              SizedBox(
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 12, right: 12, top: 10),
-                  child: TextFormField(
-                    enableInteractiveSelection: false,
-                    textCapitalization: TextCapitalization.characters,
-                    decoration: InputDecoration(
-                      fillColor: Color.fromARGB(255, 255, 255, 255),
-                      filled: true,
-                      hintText: 'Correo Electrónico',
-                      labelText: 'Correo Electrónico',
-                      suffixIcon: Icon(Icons.mail),
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                    ),
-                  ),
-                ),
-              ),
-
-              // const Align(
-              //   alignment: FractionalOffset(0.2, 0.2),
-              //   child: Text('DATOS DEL ENCARGADO'),
-              // ),
-              // const Padding(
-              //   padding: EdgeInsets.only(
-              //       left: 5,
-              //       bottom: 20,
-              //       right: 20,
-              //       top: 10), //apply padding to some sides only
-              //   child: Text("Hello World, Text 2"),
-              // ),
-              Divider(
-                color: Colors.transparent,
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => DatosCentroRoute()),
-                  );
-                },
-                child: Text('Siguiente'),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Color.fromRGBO(1, 71, 118, 1),
-                ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
