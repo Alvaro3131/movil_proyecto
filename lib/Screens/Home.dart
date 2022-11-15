@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:footer/footer.dart';
 import 'package:footer/footer_view.dart';
 import 'package:movil_proyecto/Screens/datosencargado.dart';
+import 'package:movil_proyecto/Screens/revisarsolicitud/home_revisar.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Homepage extends StatefulWidget {
@@ -94,11 +95,11 @@ class _HomepageState extends State<Homepage> {
                 padding: const EdgeInsets.all(12.0),
                 child: MaterialButton(
                   onPressed: () {
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(
-                    //       builder: (context) => DatosEncargadoRoute()),
-                    // );
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => RevisarSolicitud()),
+                    );
                   },
                   child: Container(
                     width: MediaQuery.of(context).size.width * 0.65,
@@ -151,19 +152,18 @@ class _HomepageState extends State<Homepage> {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _paginaactual,
-        onTap: (index){
-          setState(() {
-            _paginaactual = index;
-          });
-        },
-        items: [
-        BottomNavigationBarItem(
-            icon: Icon(Icons.description), label: "Solicitudes"),
-        BottomNavigationBarItem(
-            icon: Icon(Icons.trending_up), label: "Reportes")
-      ]
-      ),
+          currentIndex: _paginaactual,
+          onTap: (index) {
+            setState(() {
+              _paginaactual = index;
+            });
+          },
+          items: [
+            BottomNavigationBarItem(
+                icon: Icon(Icons.description), label: "Solicitudes"),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.trending_up), label: "Reportes")
+          ]),
       drawer: Drawer(
           backgroundColor: Color.fromRGBO(1, 71, 118, 1),
           child: ListView.builder(
