@@ -27,7 +27,7 @@ class _DatosEncargadoRouteState extends State<DatosEncargadoRoute> {
         title,
         textAlign: TextAlign.left,
         overflow: TextOverflow.ellipsis,
-        style: TextStyle(
+        style: const TextStyle(
             fontWeight: FontWeight.bold, color: Color.fromRGBO(1, 71, 118, 1)),
       ),
     );
@@ -39,11 +39,11 @@ class _DatosEncargadoRouteState extends State<DatosEncargadoRoute> {
       child: TextFormField(
         validator: (value) => value!.isEmpty ? "Campo requerido" : null,
         decoration: InputDecoration(
-          fillColor: Color.fromARGB(255, 255, 255, 255),
+          fillColor: const Color.fromARGB(255, 255, 255, 255),
           filled: true,
           hintText: description,
           labelText: description,
-          suffixIcon: Icon(Icons.verified_user_sharp),
+          suffixIcon: const Icon(Icons.verified_user_sharp),
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
         ),
       ),
