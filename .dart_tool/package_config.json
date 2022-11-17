@@ -68,6 +68,12 @@
       "languageVersion": "2.17"
     },
     {
+      "name": "flutter_bootstrap",
+      "rootUri": "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_bootstrap-2.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "flutter_lints",
       "rootUri": "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_lints-2.0.1",
       "packageUri": "lib/",
@@ -332,7 +338,7 @@
       "languageVersion": "2.18"
     }
   ],
-  "generated": "2022-11-15T03:09:59.541171Z",
+  "generated": "2022-11-15T16:33:24.129406Z",
   "generator": "pub",
   "generatorVersion": "2.18.2"
 }

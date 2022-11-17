@@ -39,6 +39,7 @@ dependencies:
   fluttertoast: ^8.1.1
   footer: ^0.0.4
   url_launcher: ^6.1.6
+  flutter_bootstrap: ^2.0.0
 
 dev_dependencies:
   flutter_test:
