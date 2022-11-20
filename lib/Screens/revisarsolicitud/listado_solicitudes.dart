@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:movil_proyecto/Screens/revisarsolicitud/web_view.dart';
 import 'package:movil_proyecto/models/country.dart';
 
 class list_solicitud extends StatelessWidget {
@@ -26,126 +27,182 @@ class list_solicitud extends StatelessWidget {
         break;
     }
     return Scaffold(
-        resizeToAvoidBottomInset: false,
         appBar: AppBar(
           backgroundColor: const Color.fromRGBO(1, 71, 118, 1),
           title: Text(text),
         ),
         body: Container(
-            padding: EdgeInsets.all(10),
             child: DataTable2(
-              columns: [
-                DataColumn2(
-                  label: Text('ID'),
-                  size: ColumnSize.S,
-                ),
-                DataColumn(label: Text('Book')),
-                DataColumn(label: Text('Author')),
-                DataColumn(label: Center(child: Text('Category')))
-              ],
-              columnSpacing: 5,
-              rows: countries
-                  .map((book) => DataRow(cells: [
-                        DataCell(
-                          Text(countries.indexOf(book).toString()),
-                        ),
-                        DataCell(Text(book.name)),
-                        DataCell(Text(book.population.toString())),
-                        DataCell(Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Flexible(
-                              child: IconButton(
-                                icon: Icon(Icons.remove_red_eye),
-                                onPressed: () {
-                                  showCupertinoModalBottomSheet(
-                                    context: context,
-                                    builder: (context) => Container(
-                                      height: 500,
-                                      child: SingleChildScrollView(
-                                        child: Column(children: [
-                                          Text("Hola Como estas"),
-                                          Text("Hola Como estas"),
-                                          Text("Hola Como estas"),
-                                          Text("Hola Como estas"),
-                                          Text("Hola Como estas"),
-                                          Text("Hola Como estas"),
-                                          Text("Hola Como estas"),
-                                          Text("Hola Como estas"),
-                                          Text("Hola Como estas")
-                                        ]),
+          columns: [
+            DataColumn2(
+              label: Text('ID'),
+              size: ColumnSize.S,
+            ),
+            DataColumn(label: Text('Book')),
+            DataColumn(label: Text('Author')),
+            DataColumn(label: Center(child: Text('Category')))
+          ],
+          horizontalMargin: 15,
+          columnSpacing: 5,
+          rows: countries
+              .map((book) => DataRow(cells: [
+                    DataCell(
+                      Text(countries.indexOf(book).toString()),
+                    ),
+                    DataCell(Text(book.name)),
+                    DataCell(Text(book.population.toString())),
+                    DataCell(Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        IconButton(
+                          icon: Icon(Icons.remove_red_eye),
+                          onPressed: () {
+                            showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                    scrollable: true,
+                                    content: Padding(
+                                      padding: const EdgeInsets.all(1.0),
+                                      child: Form(
+                                        child: Column(
+                                          children: <Widget>[
+                                            Text("Datos del Centro"),
+                                            TextFormField(
+                                              decoration: InputDecoration(
+                                                enabled: false,
+                                                hintText: book.name,
+                                                icon: Icon(Icons
+                                                    .account_balance_rounded),
+                                              ),
+                                            ),
+                                            TextFormField(
+                                              decoration: InputDecoration(
+                                                enabled: false,
+                                                hintStyle:
+                                                    TextStyle(fontSize: 10),
+                                                hintText:
+                                                    "Lima,Lima,Chaclacayo Mz A lt 14 nueva alianza",
+                                                icon: Icon(
+                                                    Icons.add_location_rounded),
+                                              ),
+                                            ),
+                                            Container(
+                                                margin:
+                                                    EdgeInsets.only(top: 20),
+                                                child: Text(
+                                                  "Datos Supervisor",
+                                                )),
+                                            TextFormField(
+                                              decoration: InputDecoration(
+                                                enabled: false,
+                                                hintText:
+                                                    "Alvaro Alonso Alva Chipana",
+                                                icon: Icon(Icons.account_box),
+                                              ),
+                                            ),
+                                            TextFormField(
+                                              decoration: InputDecoration(
+                                                enabled: false,
+                                                hintText:
+                                                    "alvaro.alvac@gmail.com",
+                                                icon: Icon(Icons.email),
+                                              ),
+                                            ),
+                                            TextFormField(
+                                              decoration: InputDecoration(
+                                                enabled: false,
+                                                hintText: "987618614",
+                                                icon: Icon(Icons.phone),
+                                              ),
+                                            ),
+                                            Container(
+                                                margin:
+                                                    EdgeInsets.only(top: 20),
+                                                child: Text(
+                                                  "Datos Director",
+                                                )),
+                                            TextFormField(
+                                              decoration: InputDecoration(
+                                                enabled: false,
+                                                hintText: "David Reyna",
+                                                icon: Icon(Icons.account_box),
+                                              ),
+                                            ),
+                                            TextFormField(
+                                              decoration: InputDecoration(
+                                                enabled: false,
+                                                hintText: "Director",
+                                                icon: Icon(Icons.add_comment),
+                                              ),
+                                            ),
+                                            Container(
+                                                margin:
+                                                    EdgeInsets.only(top: 20),
+                                                child: Text(
+                                                  "Fecha de la Solicitud",
+                                                )),
+                                            TextFormField(
+                                              decoration: InputDecoration(
+                                                enabled: false,
+                                                hintText: "11/06/2022",
+                                                icon: Icon(
+                                                    Icons.date_range_outlined),
+                                              ),
+                                            ),
+                                            TextFormField(
+                                              decoration: InputDecoration(
+                                                enabled: false,
+                                                hintText: "11/06/2022",
+                                                icon: Icon(
+                                                    Icons.date_range_outlined),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ),
+                                    actions: [
+                                      ElevatedButton(
+                                          child: Text("Close"),
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                          })
+                                    ],
                                   );
-                                },
-                              ),
-                            ),
-                            IconButton(
-                              icon: Icon(Icons.article_rounded),
-                              onPressed: () {
-                                showCupertinoModalBottomSheet(
-                                  context: context,
-                                  builder: (context) => Container(
-                                    height: 500,
-                                    child: SingleChildScrollView(
-                                      child: Column(children: [
-                                        Text("Hola Como estas tu")
-                                      ]),
-                                    ),
-                                  ),
-                                );
-                              },
-                            ),
-                          ],
-                        )),
-                      ]))
-                  .toList(),
-            )));
-  }
-
-  DataTable _createDataTable() {
-    return DataTable2(
-      columns: _createColumns(),
-      horizontalMargin: 15,
-      columnSpacing: 5,
-      rows: _createRows(),
-    );
-  }
-
-  List<DataColumn> _createColumns() {
-    return [
-      DataColumn2(
-        label: Text('ID'),
-        size: ColumnSize.S,
-      ),
-      DataColumn(label: Text('Book')),
-      DataColumn(label: Text('Author')),
-      DataColumn(label: Center(child: Text('Category')))
-    ];
-  }
-
-  List<DataRow> _createRows() {
-    return countries
-        .map((book) => DataRow(cells: [
-              DataCell(
-                Text(countries.indexOf(book).toString()),
-              ),
-              DataCell(Text(book.name)),
-              DataCell(Text(book.population.toString())),
-              DataCell(Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  IconButton(
-                    icon: Icon(Icons.remove_red_eye),
-                    onPressed: () {},
-                  ),
-                  IconButton(
-                    icon: Icon(Icons.article_rounded),
-                    onPressed: () {},
-                  ),
-                ],
-              )),
-            ]))
-        .toList();
+                                });
+                          },
+                        ),
+                        Flexible(
+                          child: IconButton(
+                            icon: Icon(Icons.article_rounded),
+                            onPressed: () {
+                              showMaterialModalBottomSheet(
+                                context: context,
+                                builder: (context) => Container(
+                                  child: Column(children: [
+                                    ElevatedButton(
+                                        onPressed: () {
+                                          Navigator.of(context).push(
+                                              MaterialPageRoute(
+                                                  builder: (BuildContext
+                                                          context) =>
+                                                      WebViewpage(
+                                                          title: "Carta",
+                                                          url:
+                                                              "https://firebasestorage.googleapis.com/v0/b/storagemunicipalidad.appspot.com/o/images%2Fimage%3A1000021367?alt=media&token=93a04c1d-ee59-412e-b784-251cac881c35")));
+                                        },
+                                        child: Text("Prueba"))
+                                  ]),
+                                ),
+                              );
+                            },
+                          ),
+                        )
+                      ],
+                    )),
+                  ]))
+              .toList(),
+        )));
   }
 }
