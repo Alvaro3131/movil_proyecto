@@ -39,6 +39,14 @@ dependencies:
   fluttertoast: ^8.1.1
   footer: ^0.0.4
   url_launcher: ^6.1.6
+  flutter_bootstrap: ^2.0.0
+  data_table_2: ^2.3.8
+  modal_bottom_sheet: ^2.1.2
+  flutter_pdfview: ^1.2.5
+  path_provider: ^2.0.11
+  http: ^0.13.5
+  webview_flutter: ^3.0.4
+  syncfusion_flutter_charts: ^20.3.57
 
 dev_dependencies:
   flutter_test:

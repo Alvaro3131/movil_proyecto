@@ -4,6 +4,7 @@ import 'package:footer/footer_view.dart';
 import 'package:movil_proyecto/Screens/datosencargado.dart';
 import 'package:movil_proyecto/Screens/revisarsolicitud/home_revisar.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:movil_proyecto/Screens/reportes.dart';
 
 class Homepage extends StatefulWidget {
   @override
@@ -30,7 +31,7 @@ class _HomepageState extends State<Homepage> {
           ),
         ],
       ),
-      body: _paginaactual == 0 ? SolicitudesPage() : ReportesPage(),
+      body: _paginaactual == 0 ? SolicitudesPage() : reportesPage(),
       bottomNavigationBar: BottomNavigationBar(
           currentIndex: _paginaactual,
           onTap: (index) {
@@ -219,24 +220,6 @@ class _HomepageState extends State<Homepage> {
   }
 }
 
-class ReportesPage extends StatefulWidget {
-  const ReportesPage({super.key});
-
-  @override
-  State<ReportesPage> createState() => _ReportesPageState();
-}
-
-class _ReportesPageState extends State<ReportesPage> {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Center(
-        child: Text("Reportes"),
-      ),
-    );
-  }
-}
-
 class SolicitudesPage extends StatefulWidget {
   const SolicitudesPage({super.key});
 
@@ -247,10 +230,27 @@ class SolicitudesPage extends StatefulWidget {
 class _SolicitudesPageState extends State<SolicitudesPage> {
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+
     return Container(
       child: Center(
         child: Column(
           children: <Widget>[
+            // Container(
+            //   height: size.height * 0.2,
+            //   child: Stack(
+            //     children: <Widget>[
+            //       Container(
+            //         height: size.height * 0.2 - 27,
+            //         decoration: BoxDecoration(
+            //             color: const Color.fromRGBO(1, 71, 118, 1),
+            //             borderRadius: BorderRadius.only(
+            //                 bottomLeft: Radius.circular(700),
+            //                 bottomRight: Radius.circular(700))),
+            //       )
+            //     ],
+            //   ),
+            // ),
             const Padding(padding: EdgeInsets.fromLTRB(0, 0, 0, 20)),
             Padding(
               padding: const EdgeInsets.all(12.0),

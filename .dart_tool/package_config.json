@@ -44,6 +44,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "data_table_2",
+      "rootUri": "file:///home/elveex/Documentos/flutterdev/flutter/.pub-cache/hosted/pub.dartlang.org/data_table_2-2.3.8",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
+    },
+    {
       "name": "fake_async",
       "rootUri": "file:///home/elveex/Documentos/flutterdev/flutter/.pub-cache/hosted/pub.dartlang.org/fake_async-1.3.1",
       "packageUri": "lib/",
@@ -68,8 +74,20 @@
       "languageVersion": "2.17"
     },
     {
+      "name": "flutter_bootstrap",
+      "rootUri": "file:///home/elveex/Documentos/flutterdev/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_bootstrap-2.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "flutter_lints",
       "rootUri": "file:///home/elveex/Documentos/flutterdev/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_lints-2.0.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
+    },
+    {
+      "name": "flutter_pdfview",
+      "rootUri": "file:///home/elveex/Documentos/flutterdev/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_pdfview-1.2.5",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
@@ -116,6 +134,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "intl",
+      "rootUri": "file:///home/elveex/Documentos/flutterdev/flutter/.pub-cache/hosted/pub.dartlang.org/intl-0.17.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "js",
       "rootUri": "file:///home/elveex/Documentos/flutterdev/flutter/.pub-cache/hosted/pub.dartlang.org/js-0.6.4",
       "packageUri": "lib/",
@@ -144,6 +168,12 @@
       "rootUri": "file:///home/elveex/Documentos/flutterdev/flutter/.pub-cache/hosted/pub.dartlang.org/meta-1.8.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
+    },
+    {
+      "name": "modal_bottom_sheet",
+      "rootUri": "file:///home/elveex/Documentos/flutterdev/flutter/.pub-cache/hosted/pub.dartlang.org/modal_bottom_sheet-2.1.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
     },
     {
       "name": "path",
@@ -242,6 +272,18 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "syncfusion_flutter_charts",
+      "rootUri": "file:///home/elveex/Documentos/flutterdev/flutter/.pub-cache/hosted/pub.dartlang.org/syncfusion_flutter_charts-20.3.57",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "syncfusion_flutter_core",
+      "rootUri": "file:///home/elveex/Documentos/flutterdev/flutter/.pub-cache/hosted/pub.dartlang.org/syncfusion_flutter_core-20.3.57",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "term_glyph",
       "rootUri": "file:///home/elveex/Documentos/flutterdev/flutter/.pub-cache/hosted/pub.dartlang.org/term_glyph-1.2.1",
       "packageUri": "lib/",
@@ -314,6 +356,30 @@
       "languageVersion": "2.14"
     },
     {
+      "name": "webview_flutter",
+      "rootUri": "file:///home/elveex/Documentos/flutterdev/flutter/.pub-cache/hosted/pub.dartlang.org/webview_flutter-3.0.4",
+      "packageUri": "lib/",
+      "languageVersion": "2.14"
+    },
+    {
+      "name": "webview_flutter_android",
+      "rootUri": "file:///home/elveex/Documentos/flutterdev/flutter/.pub-cache/hosted/pub.dartlang.org/webview_flutter_android-2.10.4",
+      "packageUri": "lib/",
+      "languageVersion": "2.14"
+    },
+    {
+      "name": "webview_flutter_platform_interface",
+      "rootUri": "file:///home/elveex/Documentos/flutterdev/flutter/.pub-cache/hosted/pub.dartlang.org/webview_flutter_platform_interface-1.9.5",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "webview_flutter_wkwebview",
+      "rootUri": "file:///home/elveex/Documentos/flutterdev/flutter/.pub-cache/hosted/pub.dartlang.org/webview_flutter_wkwebview-2.9.5",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
+    },
+    {
       "name": "win32",
       "rootUri": "file:///home/elveex/Documentos/flutterdev/flutter/.pub-cache/hosted/pub.dartlang.org/win32-3.1.1",
       "packageUri": "lib/",
@@ -332,7 +398,7 @@
       "languageVersion": "2.18"
     }
   ],
-  "generated": "2022-11-19T23:48:13.625176Z",
+  "generated": "2022-11-21T04:52:48.835377Z",
   "generator": "pub",
   "generatorVersion": "2.18.4"
 }
