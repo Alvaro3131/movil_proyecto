@@ -180,19 +180,161 @@ class list_solicitud extends StatelessWidget {
                               showMaterialModalBottomSheet(
                                 context: context,
                                 builder: (context) => Container(
+                                  height: 300,
                                   child: Column(children: [
-                                    ElevatedButton(
+                                    ElevatedButton.icon(
+                                      icon: Icon(Icons.picture_as_pdf),
+                                      style: ElevatedButton.styleFrom(
+                                          fixedSize: const Size(240, 20),
+                                          backgroundColor:
+                                              Color.fromRGBO(1, 71, 118, 1),
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(20.0),
+                                          )),
+                                      onPressed: () {
+                                        Navigator.of(context).push(
+                                            MaterialPageRoute(
+                                                builder: (BuildContext
+                                                        context) =>
+                                                    WebViewpage(
+                                                        title:
+                                                            "Solciitud Carta",
+                                                        url:
+                                                            "https://firebasestorage.googleapis.com/v0/b/storagemunicipalidad.appspot.com/o/images%2Fimage%3A1000021367?alt=media&token=93a04c1d-ee59-412e-b784-251cac881c35")));
+                                      },
+                                      label: Text(
+                                        "Solciitud Carta",
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ),
+                                    Container(
+                                      child: ElevatedButton.icon(
+                                        icon: Icon(Icons.picture_as_pdf),
+                                        style: ElevatedButton.styleFrom(
+                                            fixedSize: const Size(240, 20),
+                                            backgroundColor:
+                                                Color.fromRGBO(1, 71, 118, 1),
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(20.0),
+                                            )),
                                         onPressed: () {
-                                          Navigator.of(context).push(
-                                              MaterialPageRoute(
-                                                  builder: (BuildContext
-                                                          context) =>
-                                                      WebViewpage(
-                                                          title: "Carta",
-                                                          url:
-                                                              "https://firebasestorage.googleapis.com/v0/b/storagemunicipalidad.appspot.com/o/images%2Fimage%3A1000021367?alt=media&token=93a04c1d-ee59-412e-b784-251cac881c35")));
+                                          Navigator.of(context).push(MaterialPageRoute(
+                                              builder: (BuildContext context) =>
+                                                  WebViewpage(
+                                                      title:
+                                                          "Carta de Presentacion",
+                                                      url:
+                                                          "https://firebasestorage.googleapis.com/v0/b/storagemunicipalidad.appspot.com/o/images%2Fimage%3A1000021367?alt=media&token=93a04c1d-ee59-412e-b784-251cac881c35")));
                                         },
-                                        child: Text("Prueba"))
+                                        label: Text(
+                                          "Carta de Presentacion",
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      ),
+                                    ),
+                                    ElevatedButton.icon(
+                                      icon: Icon(Icons.picture_as_pdf),
+                                      style: ElevatedButton.styleFrom(
+                                          fixedSize: const Size(240, 20),
+                                          backgroundColor:
+                                              Color.fromRGBO(1, 71, 118, 1),
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(20.0),
+                                          )),
+                                      onPressed: () {
+                                        Navigator.of(context).push(
+                                            MaterialPageRoute(
+                                                builder: (BuildContext
+                                                        context) =>
+                                                    WebViewpage(
+                                                        title:
+                                                            "Guia de Practicas",
+                                                        url:
+                                                            "https://firebasestorage.googleapis.com/v0/b/storagemunicipalidad.appspot.com/o/images%2Fimage%3A1000021367?alt=media&token=93a04c1d-ee59-412e-b784-251cac881c35")));
+                                      },
+                                      label: Text(
+                                        "Guia de Practicas",
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ),
+                                    ElevatedButton.icon(
+                                      icon: Icon(Icons.picture_as_pdf),
+                                      style: ElevatedButton.styleFrom(
+                                          fixedSize: const Size(240, 20),
+                                          backgroundColor:
+                                              Color.fromRGBO(1, 71, 118, 1),
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(20.0),
+                                          )),
+                                      onPressed: () {
+                                        Navigator.of(context).push(MaterialPageRoute(
+                                            builder: (BuildContext context) =>
+                                                WebViewpage(
+                                                    title:
+                                                        "Informe de Practicas",
+                                                    url:
+                                                        "https://firebasestorage.googleapis.com/v0/b/storagemunicipalidad.appspot.com/o/images%2Fimage%3A1000021367?alt=media&token=93a04c1d-ee59-412e-b784-251cac881c35")));
+                                      },
+                                      label: Text(
+                                        "Informe de Practicas",
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ),
+                                    ElevatedButton.icon(
+                                      icon: Icon(Icons.picture_as_pdf),
+                                      style: ElevatedButton.styleFrom(
+                                          fixedSize: const Size(240, 20),
+                                          backgroundColor:
+                                              Color.fromRGBO(1, 71, 118, 1),
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(20.0),
+                                          )),
+                                      onPressed: () {
+                                        Navigator.of(context).push(
+                                            MaterialPageRoute(
+                                                builder: (BuildContext
+                                                        context) =>
+                                                    WebViewpage(
+                                                        title:
+                                                            "Constancias de Horas",
+                                                        url: "youtube.com")));
+                                      },
+                                      label: Text(
+                                        "Constancias de Horas",
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ),
+                                    ElevatedButton.icon(
+                                      icon: Icon(Icons.picture_as_pdf),
+                                      style: ElevatedButton.styleFrom(
+                                          fixedSize: const Size(240, 20),
+                                          backgroundColor:
+                                              Color.fromRGBO(1, 71, 118, 1),
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(20.0),
+                                          )),
+                                      onPressed: () {
+                                        Navigator.of(context).push(
+                                            MaterialPageRoute(
+                                                builder: (BuildContext
+                                                        context) =>
+                                                    WebViewpage(
+                                                        title:
+                                                            "Guia de Practicas",
+                                                        url:
+                                                            "https://firebasestorage.googleapis.com/v0/b/storagemunicipalidad.appspot.com/o/images%2Fimage%3A1000021367?alt=media&token=93a04c1d-ee59-412e-b784-251cac881c35")));
+                                      },
+                                      label: Text(
+                                        "Guia de Practicas",
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ),
                                   ]),
                                 ),
                               );

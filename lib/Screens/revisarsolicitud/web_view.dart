@@ -15,6 +15,7 @@ class WebViewpage extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           title: Text(title),
+          backgroundColor: Color.fromRGBO(1, 71, 118, 1),
         ),
         body: WebView(
           initialUrl: url,
