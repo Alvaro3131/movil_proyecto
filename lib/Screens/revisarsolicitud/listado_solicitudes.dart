@@ -295,14 +295,13 @@ class list_solicitud extends StatelessWidget {
                                                 BorderRadius.circular(20.0),
                                           )),
                                       onPressed: () {
-                                        Navigator.of(context).push(
-                                            MaterialPageRoute(
-                                                builder: (BuildContext
-                                                        context) =>
-                                                    WebViewpage(
-                                                        title:
-                                                            "Constancias de Horas",
-                                                        url: "youtube.com")));
+                                        Navigator.of(context).push(MaterialPageRoute(
+                                            builder: (BuildContext context) =>
+                                                WebViewpage(
+                                                    title:
+                                                        "Constancias de Horas",
+                                                    url:
+                                                        "https://www.facebook.com")));
                                       },
                                       label: Text(
                                         "Constancias de Horas",
