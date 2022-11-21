@@ -8,14 +8,19 @@ class DatosEncargadoRoute extends StatefulWidget {
   State<DatosEncargadoRoute> createState() => _DatosEncargadoRouteState();
 }
 
-class _DatosEncargadoRouteState extends State<DatosEncargadoRoute> {
-  String _vista = 'Selecione una Opción';
-  final _lista = [
-    'Seleccione una Opción',
-    'Prácticas Comunitarias',
-    'Prácticas Clínicas'
-  ];
+class ApplicationToolbar extends StatelessWidget with PreferredSizeWidget {
+  @override
+  Widget build(BuildContext context) {
+    return AppBar(
+        backgroundColor: const Color.fromRGBO(1, 71, 118, 1),
+        title: Text("Registrar Solicitud"));
+  }
 
+  @override
+  Size get preferredSize => Size.fromHeight(kToolbarHeight);
+}
+
+class _DatosEncargadoRouteState extends State<DatosEncargadoRoute> {
   String gender = "Selecione el tipo de prácticas";
 
   final _formKey = GlobalKey<FormState>();
@@ -55,74 +60,80 @@ class _DatosEncargadoRouteState extends State<DatosEncargadoRoute> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: const Color.fromARGB(255, 255, 255, 255),
-      appBar: AppBar(
-        backgroundColor: const Color.fromRGBO(1, 71, 118, 1),
-        title: const Text("Registrar Solicitud"),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Form(
-          key: _formKey,
-          child: Center(
-            child: Column(
-              children: <Widget>[
-                titlebox("TIPO DE PRÁCTICAS"),
-                Padding(
-                  padding: const EdgeInsets.all(18.0),
-                  child: DropdownButtonFormField(
-                    validator: (value) =>
-                        value == "Selecione el tipo de prácticas"
-                            ? "Campo requerido"
-                            : null,
-                    onChanged: (String? v) {
-                      setState(() {
-                        gender = v!;
-                      });
-                    },
-                    value: gender,
-                    items: [
-                      "Selecione el tipo de prácticas",
-                      "Prácticas Comunitarias",
-                      "Prácticas Clínicas"
-                    ]
-                        .map((v) => DropdownMenuItem(
-                              child: Text(v),
-                              value: v,
-                            ))
-                        .toList(),
+      appBar: ApplicationToolbar(),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Form(
+            key: _formKey,
+            child: Center(
+              child: Column(
+                children: <Widget>[
+                  titlebox("TIPO DE PRÁCTICAS"),
+                  Padding(
+                    padding: const EdgeInsets.all(18.0),
+                    child: DropdownButtonFormField(
+                      validator: (value) =>
+                          value == "Selecione el tipo de prácticas"
+                              ? "Campo requerido"
+                              : null,
+                      onChanged: (String? v) {
+                        setState(() {
+                          gender = v!;
+                        });
+                      },
+                      value: gender,
+                      items: [
+                        "Selecione el tipo de prácticas",
+                        "Prácticas Comunitarias",
+                        "Prácticas Clínicas"
+                      ]
+                          .map((v) => DropdownMenuItem(
+                                child: Text(v),
+                                value: v,
+                              ))
+                          .toList(),
+                    ),
                   ),
-                ),
-                titlebox("DATOS DEL NUTRICIONISTA"),
-                Divider(
-                  thickness: 3,
-                  color: Colors.transparent,
-                ),
-                textbox("Nombres y Apellidos"),
-                textbox("Nro de DNI"),
-                textbox("Correo Electrónico"),
-                Divider(
-                  thickness: 3,
-                  color: Colors.transparent,
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      print("Datos Completos");
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => DatosCentroRoute()),
-                      );
-                    } else {
-                      print("Datos Incompletos");
-                    }
-                  },
-                  child: Text('Siguiente'),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Color.fromRGBO(1, 71, 118, 1),
+                  titlebox("DATOS DEL NUTRICIONISTA"),
+                  Divider(
+                    thickness: 3,
+                    color: Colors.transparent,
                   ),
-                ),
-              ],
+                  textbox("Nombres y Apellidos"),
+                  textbox("Nro de DNI"),
+                  textbox("Correo Electrónico"),
+                  Divider(
+                    thickness: 3,
+                    color: Colors.transparent,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(18.0),
+                    child: SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.07,
+                      width: MediaQuery.of(context).size.width * 0.4,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          if (_formKey.currentState!.validate()) {
+                            print("Datos Completos");
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => DatosCentroRoute()),
+                            );
+                          } else {
+                            print("Datos Incompletos");
+                          }
+                        },
+                        child: Text('Siguiente'),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Color.fromRGBO(1, 71, 118, 1),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),

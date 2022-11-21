@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:footer/footer.dart';
 import 'package:footer/footer_view.dart';
 import 'package:movil_proyecto/Screens/datosencargado.dart';
+import 'package:movil_proyecto/Screens/revisarsolicitud/home_revisar.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Homepage extends StatefulWidget {
@@ -29,141 +30,20 @@ class _HomepageState extends State<Homepage> {
           ),
         ],
       ),
-      body: Card(
-        child: Center(
-          child: Column(
-            children: <Widget>[
-              const Padding(padding: EdgeInsets.fromLTRB(0, 0, 0, 20)),
-              Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: MaterialButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => DatosEncargadoRoute()),
-                    );
-                  },
-                  child: Container(
-                    width: MediaQuery.of(context).size.width * 0.65,
-                    decoration: BoxDecoration(
-                        boxShadow: [
-                          BoxShadow(
-                              offset: Offset(0.0, 20.0),
-                              blurRadius: 30.0,
-                              color: Colors.black12)
-                        ],
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(22.0)),
-                    child: Row(children: <Widget>[
-                      Container(
-                        height: 100.0,
-                        width: MediaQuery.of(context).size.width * 0.50,
-                        padding: EdgeInsets.symmetric(
-                            vertical: 12.0, horizontal: 12.0),
-                        child: const Center(
-                          child: Text(
-                            'AÑADIR SOLICITUD',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                        decoration: BoxDecoration(
-                            color: const Color.fromRGBO(1, 71, 118, 1),
-                            borderRadius: BorderRadius.only(
-                                bottomLeft: Radius.circular(95.0),
-                                topLeft: Radius.circular(95.0),
-                                bottomRight: Radius.circular(400.0))),
-                      ),
-                      Container(
-                        width: MediaQuery.of(context).size.width * 0.10,
-                        child: Center(
-                          child: Icon(
-                            Icons.post_add,
-                            size: 30.0,
-                            color: const Color.fromRGBO(1, 71, 118, 1),
-                          ),
-                        ),
-                      )
-                    ]),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: MaterialButton(
-                  onPressed: () {
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(
-                    //       builder: (context) => DatosEncargadoRoute()),
-                    // );
-                  },
-                  child: Container(
-                    width: MediaQuery.of(context).size.width * 0.65,
-                    decoration: BoxDecoration(
-                        boxShadow: [
-                          BoxShadow(
-                              offset: Offset(0.0, 20.0),
-                              blurRadius: 30.0,
-                              color: Colors.black12)
-                        ],
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(22.0)),
-                    child: Row(children: <Widget>[
-                      Container(
-                        height: 100.0,
-                        width: MediaQuery.of(context).size.width * 0.50,
-                        padding: EdgeInsets.symmetric(
-                            vertical: 12.0, horizontal: 12.0),
-                        child: Center(
-                          child: Text(
-                            'REVISAR ESTADO',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                        decoration: BoxDecoration(
-                            color: const Color.fromARGB(255, 255, 153, 0),
-                            borderRadius: BorderRadius.only(
-                                bottomLeft: Radius.circular(95.0),
-                                topLeft: Radius.circular(95.0),
-                                bottomRight: Radius.circular(400.0))),
-                      ),
-                      Container(
-                        width: MediaQuery.of(context).size.width * 0.10,
-                        child: Center(
-                          child: Icon(
-                            Icons.visibility,
-                            size: 30.0,
-                            color: const Color.fromARGB(255, 255, 153, 0),
-                          ),
-                        ),
-                      )
-                    ]),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
+      body: _paginaactual == 0 ? SolicitudesPage() : ReportesPage(),
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _paginaactual,
-        onTap: (index){
-          setState(() {
-            _paginaactual = index;
-          });
-        },
-        items: [
-        BottomNavigationBarItem(
-            icon: Icon(Icons.description), label: "Solicitudes"),
-        BottomNavigationBarItem(
-            icon: Icon(Icons.trending_up), label: "Reportes")
-      ]
-      ),
+          currentIndex: _paginaactual,
+          onTap: (index) {
+            setState(() {
+              _paginaactual = index;
+            });
+          },
+          items: [
+            BottomNavigationBarItem(
+                icon: Icon(Icons.description), label: "Solicitudes"),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.trending_up), label: "Reportes")
+          ]),
       drawer: Drawer(
           backgroundColor: Color.fromRGBO(1, 71, 118, 1),
           child: ListView.builder(
@@ -335,6 +215,155 @@ class _HomepageState extends State<Homepage> {
               );
             },
           )),
+    );
+  }
+}
+
+class ReportesPage extends StatefulWidget {
+  const ReportesPage({super.key});
+
+  @override
+  State<ReportesPage> createState() => _ReportesPageState();
+}
+
+class _ReportesPageState extends State<ReportesPage> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Center(
+        child: Text("Reportes"),
+      ),
+    );
+  }
+}
+
+class SolicitudesPage extends StatefulWidget {
+  const SolicitudesPage({super.key});
+
+  @override
+  State<SolicitudesPage> createState() => _SolicitudesPageState();
+}
+
+class _SolicitudesPageState extends State<SolicitudesPage> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Center(
+        child: Column(
+          children: <Widget>[
+            const Padding(padding: EdgeInsets.fromLTRB(0, 0, 0, 20)),
+            Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: MaterialButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => DatosEncargadoRoute()),
+                  );
+                },
+                child: Container(
+                  width: MediaQuery.of(context).size.width * 0.65,
+                  decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                            offset: Offset(0.0, 20.0),
+                            blurRadius: 30.0,
+                            color: Colors.black12)
+                      ],
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(22.0)),
+                  child: Row(children: <Widget>[
+                    Container(
+                      height: 100.0,
+                      width: MediaQuery.of(context).size.width * 0.50,
+                      padding: EdgeInsets.symmetric(
+                          vertical: 12.0, horizontal: 12.0),
+                      child: const Center(
+                        child: Text(
+                          'AÑADIR SOLICITUD',
+                          style: TextStyle(
+                              color: Colors.white, fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      decoration: BoxDecoration(
+                          color: const Color.fromRGBO(1, 71, 118, 1),
+                          borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(95.0),
+                              topLeft: Radius.circular(95.0),
+                              bottomRight: Radius.circular(400.0))),
+                    ),
+                    Container(
+                      width: MediaQuery.of(context).size.width * 0.10,
+                      child: Center(
+                        child: Icon(
+                          Icons.post_add,
+                          size: 30.0,
+                          color: const Color.fromRGBO(1, 71, 118, 1),
+                        ),
+                      ),
+                    )
+                  ]),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: MaterialButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => RevisarSolicitud()),
+                  );
+                },
+                child: Container(
+                  width: MediaQuery.of(context).size.width * 0.65,
+                  decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                            offset: Offset(0.0, 20.0),
+                            blurRadius: 30.0,
+                            color: Colors.black12)
+                      ],
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(22.0)),
+                  child: Row(children: <Widget>[
+                    Container(
+                      height: 100.0,
+                      width: MediaQuery.of(context).size.width * 0.50,
+                      padding: EdgeInsets.symmetric(
+                          vertical: 12.0, horizontal: 12.0),
+                      child: Center(
+                        child: Text(
+                          'REVISAR ESTADO',
+                          style: TextStyle(
+                              color: Colors.white, fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      decoration: BoxDecoration(
+                          color: const Color.fromARGB(255, 255, 153, 0),
+                          borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(95.0),
+                              topLeft: Radius.circular(95.0),
+                              bottomRight: Radius.circular(400.0))),
+                    ),
+                    Container(
+                      width: MediaQuery.of(context).size.width * 0.10,
+                      child: Center(
+                        child: Icon(
+                          Icons.visibility,
+                          size: 30.0,
+                          color: const Color.fromARGB(255, 255, 153, 0),
+                        ),
+                      ),
+                    )
+                  ]),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
