@@ -41,27 +41,103 @@ class _reportesPageState extends State<reportesPage> {
 
   @override
   Widget build(BuildContext context) {
-    final List<ChartData> chartData = [
-      ChartData('David', 25, Colors.black),
-      ChartData('Steve', 38, Colors.green),
-      ChartData('Jack', 34, Colors.red),
-      ChartData('Others', 52, Colors.blue)
-    ];
+    // final List<sChartData> chartData = [
+    //   sChartData('David', 25, Colors.black),
+    //   sChartData('Steve', 38, Colors.green),
+    //   sChartData('Jack', 34, Colors.red),
+    //   sChartData('Others', 52, Colors.blue)
+    // ];
 
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
           children: [
-            titlebox("REPORTE PRÁCTICAS COMUNITARIAS"),
-            SfCircularChart(
-              tooltipBehavior: _tooltip,
-              series: <CircularSeries<_ChartData, String>>[
-                DoughnutSeries<_ChartData, String>(
-                    dataSource: data,
-                    xValueMapper: (_ChartData data, _) => data.x,
-                    yValueMapper: (_ChartData data, _) => data.y,
-                    name: 'Practicas Comunitarias')
-              ],
+            titlebox("TOTAL PRÁCTICAS: 700 hrs"),
+
+            Padding(
+              padding: const EdgeInsets.only(top: 8.0),
+              child: Container(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      "Total Horas Practicas Comunitarias: 350",
+                      textAlign: TextAlign.left,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 15.0),
+                      child: Text(
+                        "Horas Validadas: 200",
+                        textAlign: TextAlign.left,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 8.0),
+              child: Container(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  // ignore: prefer_const_literals_to_create_immutables
+                  children: <Widget>[
+                    Text(
+                      "Total Horas Practicas Clínicas: 350",
+                      textAlign: TextAlign.left,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 15.0),
+                      child: Text(
+                        "Horas Validadas: 150",
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 12.0),
+              child: Container(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Container(
+                      height: 15.0,
+                      width: 15.0,
+                      color: Color.fromARGB(255, 190, 98, 103),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 5.0),
+                      child: Text(
+                        "Prácticas Comunitarias",
+                        textAlign: TextAlign.left,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 15.0),
+                      child: Container(
+                        height: 15.0,
+                        width: 15.0,
+                        color: Color.fromARGB(255, 68, 117, 173),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 5.0),
+                      child: Text(
+                        "Prácticas Clínicas",
+                        textAlign: TextAlign.left,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    )
+                  ],
+                ),
+              ),
             ),
             SfCircularChart(
               series: <CircularSeries>[
@@ -72,19 +148,76 @@ class _reportesPageState extends State<reportesPage> {
                 )
               ],
             ),
-            SfCircularChart(series: <CircularSeries>[
-              // Render pie chart
-              PieSeries<ChartData, String>(
-                  dataSource: chartData,
-                  pointColorMapper: (ChartData data, _) => data.color,
-                  xValueMapper: (ChartData data, _) => data.x,
-                  yValueMapper: (ChartData data, _) => data.y)
-            ])
+            titlebox("PRÁCTICAS EN CURSO: PRÁCTICAS COMUNITARIAS"),
+            Padding(
+              padding: const EdgeInsets.only(top: 8.0),
+              child: Container(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Container(
+                      height: 15.0,
+                      width: 15.0,
+                      color: Color.fromARGB(255, 190, 98, 103),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 5.0),
+                      child: Text(
+                        "Prácticas Restantes",
+                        textAlign: TextAlign.left,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 15.0),
+                      child: Container(
+                        height: 15.0,
+                        width: 15.0,
+                        color: Color.fromARGB(255, 68, 117, 173),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 5.0),
+                      child: Text(
+                        "Prácticas Hechas",
+                        textAlign: TextAlign.left,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+            SfCircularChart(
+              tooltipBehavior: _tooltip,
+              series: <CircularSeries<_ChartData, String>>[
+                DoughnutSeries<_ChartData, String>(
+                    dataSource: data,
+                    xValueMapper: (_ChartData data, _) => data.x,
+                    yValueMapper: (_ChartData data, _) => data.y,
+                    name: 'Practicas Comunitarias')
+              ],
+            ),
+            // SfCircularChart(series: <CircularSeries>[
+            //   // Render pie chart
+            //   PieSeries<ChartData, String>(
+            //       dataSource: chartData,
+            //       pointColorMapper: (ChartData data, _) => data.color,
+            //       xValueMapper: (ChartData data, _) => data.x,
+            //       yValueMapper: (ChartData data, _) => data.y)
+            // ])
           ],
         ),
       ),
     );
   }
+}
+
+class ChartData {
+  ChartData(this.x, this.y);
+
+  final String x;
+  final num y;
 }
 
 class _ChartData {
@@ -94,9 +227,9 @@ class _ChartData {
   final num y;
 }
 
-class ChartData {
-  ChartData(this.x, this.y, this.color);
-  final String x;
-  final double y;
-  final Color color;
-}
+// class sChartData {
+//   sChartData(this.x, this.y, this.color);
+//   final String x;
+//   final double y;
+//   final Color color;
+// }
