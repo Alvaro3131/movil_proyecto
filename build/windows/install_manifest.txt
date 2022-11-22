@@ -11,6 +11,7 @@ D:/githubdeskop/movil_proyecto/build/windows/runner/Debug/data/flutter_assets/as
 D:/githubdeskop/movil_proyecto/build/windows/runner/Debug/data/flutter_assets/FontManifest.json
 D:/githubdeskop/movil_proyecto/build/windows/runner/Debug/data/flutter_assets/fonts/MaterialIcons-Regular.otf
 D:/githubdeskop/movil_proyecto/build/windows/runner/Debug/data/flutter_assets/kernel_blob.bin
+D:/githubdeskop/movil_proyecto/build/windows/runner/Debug/data/flutter_assets/NOTICES
 D:/githubdeskop/movil_proyecto/build/windows/runner/Debug/data/flutter_assets/NOTICES.Z
 D:/githubdeskop/movil_proyecto/build/windows/runner/Debug/data/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf
 D:/githubdeskop/movil_proyecto/build/windows/runner/Debug/data/flutter_assets/packages/fluttertoast/assets/toastify.css

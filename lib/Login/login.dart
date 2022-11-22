@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -31,7 +33,17 @@ class _LoginMobile extends State<LoginMobile> {
   String pass = '1234';
   bool _isObscure = true;
   bool _isVisible = false;
-  void validar() {
+  void validar() async {
+    final res =
+        await http.post(Uri.parse('http://localhost:3000/api/auth'), body: {
+      "username": username.text,
+      "password": password.text,
+    });
+    print(json.decode(res.body));
+    if (res.statusCode == 200) {
+      final resData = json.decode(res.body);
+    }
+
     if (user == username.text && pass == password.text) {
       Navigator.pushNamed(context, '/home');
     } else {

@@ -273,13 +273,13 @@
     },
     {
       "name": "syncfusion_flutter_charts",
-      "rootUri": "file:///home/elveex/Documentos/flutterdev/flutter/.pub-cache/hosted/pub.dartlang.org/syncfusion_flutter_charts-20.3.57",
+      "rootUri": "file:///home/elveex/Documentos/flutterdev/flutter/.pub-cache/hosted/pub.dartlang.org/syncfusion_flutter_charts-20.3.58",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "syncfusion_flutter_core",
-      "rootUri": "file:///home/elveex/Documentos/flutterdev/flutter/.pub-cache/hosted/pub.dartlang.org/syncfusion_flutter_core-20.3.57",
+      "rootUri": "file:///home/elveex/Documentos/flutterdev/flutter/.pub-cache/hosted/pub.dartlang.org/syncfusion_flutter_core-20.3.58",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -303,13 +303,13 @@
     },
     {
       "name": "url_launcher",
-      "rootUri": "file:///home/elveex/Documentos/flutterdev/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher-6.1.6",
+      "rootUri": "file:///home/elveex/Documentos/flutterdev/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher-6.1.7",
       "packageUri": "lib/",
       "languageVersion": "2.14"
     },
     {
       "name": "url_launcher_android",
-      "rootUri": "file:///home/elveex/Documentos/flutterdev/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_android-6.0.21",
+      "rootUri": "file:///home/elveex/Documentos/flutterdev/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_android-6.0.22",
       "packageUri": "lib/",
       "languageVersion": "2.14"
     },
@@ -398,7 +398,7 @@
       "languageVersion": "2.18"
     }
   ],
-  "generated": "2022-11-21T04:52:48.835377Z",
+  "generated": "2022-11-22T15:12:41.123290Z",
   "generator": "pub",
   "generatorVersion": "2.18.4"
 }
