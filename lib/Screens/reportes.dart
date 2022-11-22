@@ -57,7 +57,7 @@ class _reportesPageState extends State<reportesPage> {
             Padding(
               padding: const EdgeInsets.only(top: 8.0),
               child: Container(
-                child: Row(
+                child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Text(
@@ -66,7 +66,7 @@ class _reportesPageState extends State<reportesPage> {
                       overflow: TextOverflow.ellipsis,
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(left: 15.0),
+                      padding: const EdgeInsets.only(left: 15.0, top: 8),
                       child: Text(
                         "Horas Validadas: 200",
                         textAlign: TextAlign.left,

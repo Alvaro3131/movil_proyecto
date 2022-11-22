@@ -3,6 +3,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:flutter_session_manager/flutter_session_manager.dart';
+import 'package:movil_proyecto/models/token.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -44,16 +45,13 @@ class _LoginMobile extends State<LoginMobile> {
       });
       print(json.decode(res.body));
       if (res.statusCode == 200) {
-        final resData = json.decode(res.body);
+        Token token = Token.fromJson(json.decode(res.body));
       }
     } catch (e) {
       print("No se pudo conectar");
     }
     if (user == username.text && pass == password.text) {
-      final prefs = await SharedPreferences.getInstance();
-
-// Save an integer value to 'counter' key.
-      await prefs.setInt('counter', 10);
+      guardatos("Alvaro Alva Chipana");
       Navigator.pushNamed(context, '/home');
     } else {
       if (username.text == '' && password.text == '') {
@@ -76,6 +74,11 @@ class _LoginMobile extends State<LoginMobile> {
             fontSize: 16.0);
       }
     }
+  }
+
+  Future<void> guardatos(nombre) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString("name", nombre);
   }
 
   @override

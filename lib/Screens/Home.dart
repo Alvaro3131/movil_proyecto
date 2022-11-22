@@ -15,12 +15,21 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
-  String user = "asas";
+  String user = "";
   String ciclo = '6';
   int _paginaactual = 0;
   @override
   void initState() {
+    mostrardatos();
     super.initState();
+  }
+
+  Future<void> mostrardatos() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String username = await prefs.getString("name")!;
+    setState(() {
+      user = username;
+    });
   }
 
   @override
