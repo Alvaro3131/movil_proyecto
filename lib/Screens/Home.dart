@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_session_manager/flutter_session_manager.dart';
 import 'package:footer/footer.dart';
 import 'package:footer/footer_view.dart';
 import 'package:movil_proyecto/Screens/datosencargado.dart';
 import 'package:movil_proyecto/Screens/revisarsolicitud/home_revisar.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:movil_proyecto/Screens/reportes.dart';
+import 'package:flutter_session_manager/flutter_session_manager.dart';
 
 class Homepage extends StatefulWidget {
   @override
@@ -12,9 +15,13 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
-  String user = 'Alvaro Alva Chipana';
+  String user = "asas";
   String ciclo = '6';
   int _paginaactual = 0;
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
