@@ -5,6 +5,7 @@ import 'dart:convert';
 import 'package:flutter_session_manager/flutter_session_manager.dart';
 import 'package:movil_proyecto/models/token.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:jwt_decode/jwt_decode.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -36,13 +37,45 @@ class _LoginMobile extends State<LoginMobile> {
   String pass = '1234';
   bool _isObscure = true;
   bool _isVisible = false;
+  Future<void> login() async {
+    final response =
+        await http.post(Uri.parse("http://192.168.1.99:3000/api/auth"),
+            headers: <String, String>{
+              'Content-Type': 'application/json; charset=UTF-8',
+            },
+            body: jsonEncode(<String, String>{
+              'username': username.text,
+              'password': password.text,
+            }));
+
+    if (response.statusCode == 200) {
+      Token token = Token.fromJson(json.decode(response.body));
+      Map<String, dynamic> payload = Jwt.parseJwt(token.accessToken);
+
+      print(payload['nombrecompleto'].toString());
+      print(payload['id'].toString());
+      print(payload['dni'].toString());
+      print(payload['idrol'].toString());
+      guardatos(payload['id'].toString(), payload['nombrecompleto'],
+          payload['dni'], payload['idrol'].toString());
+      Navigator.pushNamed(context, '/home');
+    } else {
+      // Si la llamada no fue exitosa, lanza un error.
+      print(json.decode(response.body));
+    }
+  }
+
   void validar() async {
     try {
-      final res =
-          await http.post(Uri.parse('http://localhost:3000/api/auth'), body: {
-        "username": username.text,
-        "password": password.text,
-      });
+      final res = await http.post(
+          Uri.parse('http://192.168.1.99:3000/api/auth'),
+          headers: <String, String>{
+            'Content-Type': 'application/json; charset=UTF-8',
+          },
+          body: {
+            "username": username.text,
+            "password": password.text,
+          });
       print(json.decode(res.body));
       if (res.statusCode == 200) {
         Token token = Token.fromJson(json.decode(res.body));
@@ -51,7 +84,6 @@ class _LoginMobile extends State<LoginMobile> {
       print("No se pudo conectar");
     }
     if (user == username.text && pass == password.text) {
-      guardatos("Alvaro Alva Chipana");
       Navigator.pushNamed(context, '/home');
     } else {
       if (username.text == '' && password.text == '') {
@@ -76,9 +108,12 @@ class _LoginMobile extends State<LoginMobile> {
     }
   }
 
-  Future<void> guardatos(nombre) async {
+  Future<void> guardatos(id, nombre, dni, idrol) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString("id", id);
     await prefs.setString("name", nombre);
+    await prefs.setString("dni", dni);
+    await prefs.setString("idrol", idrol);
   }
 
   @override
@@ -194,7 +229,7 @@ class _LoginMobile extends State<LoginMobile> {
                     ),
                     ElevatedButton(
                         onPressed: () {
-                          validar();
+                          login();
                         },
                         child: Text("Ingresar"),
                         style: ElevatedButton.styleFrom(

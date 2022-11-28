@@ -152,6 +152,12 @@
       "languageVersion": "2.16"
     },
     {
+      "name": "jwt_decode",
+      "rootUri": "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/jwt_decode-0.3.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "lints",
       "rootUri": "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/lints-2.0.1",
       "packageUri": "lib/",
@@ -195,7 +201,7 @@
     },
     {
       "name": "path_provider_android",
-      "rootUri": "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider_android-2.0.21",
+      "rootUri": "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider_android-2.0.22",
       "packageUri": "lib/",
       "languageVersion": "2.14"
     },
@@ -435,7 +441,7 @@
     },
     {
       "name": "win32",
-      "rootUri": "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/win32-3.1.1",
+      "rootUri": "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/win32-3.1.2",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
@@ -452,7 +458,7 @@
       "languageVersion": "2.18"
     }
   ],
-  "generated": "2022-11-22T15:20:40.333887Z",
+  "generated": "2022-11-28T00:53:13.308249Z",
   "generator": "pub",
   "generatorVersion": "2.18.2"
 }
