@@ -3,6 +3,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:flutter_session_manager/flutter_session_manager.dart';
+import 'package:movil_proyecto/models/Postulante.dart';
 import 'package:movil_proyecto/models/token.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:jwt_decode/jwt_decode.dart';
@@ -51,14 +52,34 @@ class _LoginMobile extends State<LoginMobile> {
     if (response.statusCode == 200) {
       Token token = Token.fromJson(json.decode(response.body));
       Map<String, dynamic> payload = Jwt.parseJwt(token.accessToken);
+      int id = payload['id'];
+      int validar = payload['idrol'];
 
-      print(payload['nombrecompleto'].toString());
-      print(payload['id'].toString());
-      print(payload['dni'].toString());
-      print(payload['idrol'].toString());
-      guardatos(payload['id'].toString(), payload['nombrecompleto'],
-          payload['dni'], payload['idrol'].toString());
-      Navigator.pushNamed(context, '/home');
+      final res = await http.get(
+        Uri.parse("http://192.168.1.99:3000/api/auth/postulante/$id"),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+      );
+      List<Map<String, dynamic>> map = [];
+      map = List<Map<String, dynamic>>.from(jsonDecode(res.body));
+
+      Postulante postulante = Postulante.fromJson(map[0]);
+
+      guardatos(
+              postulante.id_postulante.toString(),
+              payload['nombrecompleto'],
+              payload['dni'],
+              payload['idrol'].toString(),
+              postulante.cod_alumno,
+              postulante.h_comunitarias,
+              postulante.h_clinicas,
+              postulante.sol_activas,
+              postulante.horas_comunitarias.toString(),
+              postulante.horas_clinicas.toString())
+          .then((value) {
+        Navigator.pushNamed(context, '/home');
+      });
     } else {
       // Si la llamada no fue exitosa, lanza un error.
       print(json.decode(response.body));
@@ -108,12 +129,22 @@ class _LoginMobile extends State<LoginMobile> {
     }
   }
 
-  Future<void> guardatos(id, nombre, dni, idrol) async {
+  Future<void> guardatos(id, nombre, dni, idrol, codigo, vcomunitarias,
+      vclinicas, activo, hcomunitarias, hclinicas) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setString("id", id);
     await prefs.setString("name", nombre);
     await prefs.setString("dni", dni);
     await prefs.setString("idrol", idrol);
+    await prefs.setString("codigo", codigo);
+    await prefs.setString("vcomuntiraias", vcomunitarias);
+
+    await prefs.setString("vclinicas", vclinicas);
+    await prefs.setString("solactivo", activo);
+    await prefs.setString("hcomunitarias", hcomunitarias);
+    await prefs.setString("hclinicas", hclinicas);
+    print(
+        "$id, $nombre, $dni, $idrol, $codigo, $vcomunitarias, $vclinicas, $activo,$hcomunitarias, $hclinicas");
   }
 
   @override

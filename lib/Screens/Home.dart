@@ -16,17 +16,34 @@ class Homepage extends StatefulWidget {
 
 class _HomepageState extends State<Homepage> {
   String user = "";
-  String ciclo = '6';
+  String dni = "";
+  String codigo = "";
+  String ciclo = 'Nutricion Humana';
   int _paginaactual = 0;
+
   @override
   void initState() {
-    mostrardatos();
-    super.initState();
+    mostrardatos().then((value) {
+      setState(() {
+        user = user;
+      });
+    });
   }
 
   Future<void> mostrardatos() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String username = await prefs.getString("name")!;
+    String id = await prefs.getString("id")!;
+
+    String dni = prefs.getString("dni")!;
+    String idrol = prefs.getString("idrol")!;
+    String codigo = prefs.getString("codigo")!;
+    String vcomunitarias = prefs.getString("vcomuntiraias")!;
+
+    String vclinicas = prefs.getString("vclinicas")!;
+    String solactivo = prefs.getString("solactivo")!;
+    String hcomunitarias = prefs.getString("hcomunitarias")!;
+    String hclinicas = prefs.getString("hclinicas")!;
     setState(() {
       user = username;
     });
@@ -52,6 +69,7 @@ class _HomepageState extends State<Homepage> {
           currentIndex: _paginaactual,
           onTap: (index) {
             setState(() {
+              print(user);
               _paginaactual = index;
             });
           },
@@ -183,7 +201,10 @@ class _HomepageState extends State<Homepage> {
                           width: 120,
                           height: 50,
                           child: ElevatedButton(
-                            onPressed: () {
+                            onPressed: () async {
+                              SharedPreferences preferences =
+                                  await SharedPreferences.getInstance();
+                              await preferences.clear();
                               Navigator.of(context).pushNamedAndRemoveUntil(
                                   '/', (Route<dynamic> route) => false);
                             },
