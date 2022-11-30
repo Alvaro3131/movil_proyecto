@@ -20,33 +20,47 @@ class _HomepageState extends State<Homepage> {
   String codigo = "";
   String ciclo = 'Nutricion Humana';
   int _paginaactual = 0;
+  String vcomunitarias = "";
 
+  String vclinicas = "";
+  int solactivo = 0;
+  int hcomunitarias = 0;
+  int hclinicas = 0;
+  int id = 0;
   @override
   void initState() {
     mostrardatos().then((value) {
       setState(() {
         user = user;
+        print(id);
       });
     });
   }
 
   Future<void> mostrardatos() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    String username = await prefs.getString("name")!;
-    String id = await prefs.getString("id")!;
+    String username = prefs.getString("name")!;
+    int idp = int.parse(prefs.getString("id")!);
 
-    String dni = prefs.getString("dni")!;
+    String dnip = prefs.getString("dni")!;
     String idrol = prefs.getString("idrol")!;
-    String codigo = prefs.getString("codigo")!;
-    String vcomunitarias = prefs.getString("vcomuntiraias")!;
+    String codigop = prefs.getString("codigo")!;
+    String vcomunitariaspp = prefs.getString("vcomuntiraias")!;
 
-    String vclinicas = prefs.getString("vclinicas")!;
-    String solactivo = prefs.getString("solactivo")!;
-    String hcomunitarias = prefs.getString("hcomunitarias")!;
-    String hclinicas = prefs.getString("hclinicas")!;
+    String vclinicasp = prefs.getString("vclinicas")!;
+    int solactivop = int.parse(prefs.getString("solactivo")!);
+    int hcomunitariasp = int.parse(prefs.getString("hcomunitarias")!);
+    int hclinicasp = int.parse(prefs.getString("hclinicas")!);
     setState(() {
       user = username;
-      dni = dni;
+      dni = dnip;
+      codigo = codigop;
+      vcomunitarias = vcomunitariaspp;
+      vclinicas = vclinicasp;
+      solactivo = solactivop;
+      hcomunitarias = hcomunitariasp;
+      hclinicas = hclinicasp;
+      id = idp;
     });
   }
 
@@ -65,7 +79,11 @@ class _HomepageState extends State<Homepage> {
           ),
         ],
       ),
-      body: _paginaactual == 0 ? SolicitudesPage() : reportesPage(),
+      body: _paginaactual == 0
+          ? SolicitudesPage(
+              id: id,
+            )
+          : reportesPage(),
       bottomNavigationBar: BottomNavigationBar(
           currentIndex: _paginaactual,
           onTap: (index) {
@@ -133,7 +151,7 @@ class _HomepageState extends State<Homepage> {
                                   Container(
                                     margin: EdgeInsets.only(top: 20, left: 20),
                                     child: Text(
-                                      'Ciclo:',
+                                      'Escuela:',
                                       style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 19,
@@ -163,7 +181,7 @@ class _HomepageState extends State<Homepage> {
                                   Container(
                                     margin: EdgeInsets.only(left: 20, top: 5),
                                     child: Text(
-                                      '202011227',
+                                      codigo,
                                       style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 19,
@@ -184,7 +202,7 @@ class _HomepageState extends State<Homepage> {
                                   Container(
                                     margin: EdgeInsets.only(left: 20, top: 5),
                                     child: Text(
-                                      '73057953',
+                                      dni,
                                       style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 19,
@@ -259,7 +277,8 @@ class _HomepageState extends State<Homepage> {
 }
 
 class SolicitudesPage extends StatefulWidget {
-  const SolicitudesPage({super.key});
+  final int id;
+  const SolicitudesPage({super.key, required this.id});
 
   @override
   State<SolicitudesPage> createState() => _SolicitudesPageState();
@@ -294,6 +313,7 @@ class _SolicitudesPageState extends State<SolicitudesPage> {
               padding: const EdgeInsets.all(12.0),
               child: MaterialButton(
                 onPressed: () {
+                  print(widget.id);
                   Navigator.push(
                     context,
                     MaterialPageRoute(
