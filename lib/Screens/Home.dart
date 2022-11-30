@@ -46,6 +46,7 @@ class _HomepageState extends State<Homepage> {
     String hclinicas = prefs.getString("hclinicas")!;
     setState(() {
       user = username;
+      dni = dni;
     });
   }
 
