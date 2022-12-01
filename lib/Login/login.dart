@@ -40,7 +40,7 @@ class _LoginMobile extends State<LoginMobile> {
   bool _isVisible = false;
   Future<void> login() async {
     final response =
-        await http.post(Uri.parse("http://192.168.1.175:3000/api/auth"),
+        await http.post(Uri.parse("http://10.40.1.63:3000/api/auth"),
             headers: <String, String>{
               'Content-Type': 'application/json; charset=UTF-8',
             },
@@ -56,7 +56,7 @@ class _LoginMobile extends State<LoginMobile> {
       int validar = payload['idrol'];
 
       final res = await http.get(
-        Uri.parse("http://192.168.1.175:3000/api/auth/postulante/$id"),
+        Uri.parse("http://10.40.1.63:3000/api/auth/postulante/$id"),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
