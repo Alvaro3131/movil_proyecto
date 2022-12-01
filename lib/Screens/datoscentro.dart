@@ -3,7 +3,8 @@ import 'package:movil_proyecto/Screens/planactividades.dart';
 import 'package:movil_proyecto/Screens/datosencargado.dart';
 
 class DatosCentroRoute extends StatefulWidget {
-  const DatosCentroRoute({super.key});
+  final int idpostulante;
+  const DatosCentroRoute({super.key, required this.idpostulante});
 
   @override
   State<DatosCentroRoute> createState() => _DatosCentroRouteState();
@@ -88,7 +89,11 @@ class _DatosCentroRouteState extends State<DatosCentroRoute> {
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) =>
-                                            DatosEncargadoRoute()),
+                                            DatosEncargadoRoute(
+                                              idpostulante: widget.idpostulante,
+                                              vclinicas: "as",
+                                              vcomunitarias: "Asas",
+                                            )),
                                   );
                                 },
                                 child: Text('Volver atrás'),
@@ -114,7 +119,10 @@ class _DatosCentroRouteState extends State<DatosCentroRoute> {
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                              PlanActividadesRoute()),
+                                              PlanActividadesRoute(
+                                                idpostulante:
+                                                    widget.idpostulante,
+                                              )),
                                     );
                                   } else {
                                     print("Datos Incompletos");

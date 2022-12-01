@@ -2,7 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:movil_proyecto/Screens/datoscentro.dart';
 
 class DatosEncargadoRoute extends StatefulWidget {
-  const DatosEncargadoRoute({super.key});
+  final int idpostulante;
+  final String vcomunitarias;
+  final String vclinicas;
+  const DatosEncargadoRoute(
+      {super.key,
+      required this.idpostulante,
+      required this.vcomunitarias,
+      required this.vclinicas});
 
   @override
   State<DatosEncargadoRoute> createState() => _DatosEncargadoRouteState();
@@ -22,7 +29,9 @@ class ApplicationToolbar extends StatelessWidget with PreferredSizeWidget {
 
 class _DatosEncargadoRouteState extends State<DatosEncargadoRoute> {
   String gender = "Selecione el tipo de prácticas";
-
+  List<String> listOfValue = [
+    "Selecione el tipo de prácticas",
+  ];
   final _formKey = GlobalKey<FormState>();
 
   Widget titlebox(String title) {
@@ -56,6 +65,17 @@ class _DatosEncargadoRouteState extends State<DatosEncargadoRoute> {
   }
 
   @override
+  void initState() {
+    if (widget.vclinicas == '1') {
+      listOfValue.add("Practicas Clinicas");
+    }
+    if (widget.vcomunitarias == '1') {
+      listOfValue.add("Practicas Comunitarias");
+    }
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -83,16 +103,14 @@ class _DatosEncargadoRouteState extends State<DatosEncargadoRoute> {
                         });
                       },
                       value: gender,
-                      items: [
-                        "Selecione el tipo de prácticas",
-                        "Prácticas Comunitarias",
-                        "Prácticas Clínicas"
-                      ]
-                          .map((v) => DropdownMenuItem(
-                                child: Text(v),
-                                value: v,
-                              ))
-                          .toList(),
+                      items: listOfValue.map((val) {
+                        return DropdownMenuItem(
+                          value: val,
+                          child: Text(
+                            val,
+                          ),
+                        );
+                      }).toList(),
                     ),
                   ),
                   titlebox("DATOS DEL NUTRICIONISTA"),
@@ -101,7 +119,7 @@ class _DatosEncargadoRouteState extends State<DatosEncargadoRoute> {
                     color: Colors.transparent,
                   ),
                   textbox("Nombres y Apellidos"),
-                  textbox("Nro de DNI"),
+                  textbox("Nro de Telefono"),
                   textbox("Correo Electrónico"),
                   Divider(
                     thickness: 3,
@@ -119,7 +137,9 @@ class _DatosEncargadoRouteState extends State<DatosEncargadoRoute> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => DatosCentroRoute()),
+                                  builder: (context) => DatosCentroRoute(
+                                        idpostulante: widget.idpostulante,
+                                      )),
                             );
                           } else {
                             print("Datos Incompletos");

@@ -3,7 +3,8 @@ import 'package:movil_proyecto/Screens/Home.dart';
 import 'package:movil_proyecto/Screens/datoscentro.dart';
 
 class PlanActividadesRoute extends StatefulWidget {
-  const PlanActividadesRoute({super.key});
+  final int idpostulante;
+  const PlanActividadesRoute({super.key, required this.idpostulante});
 
   @override
   State<PlanActividadesRoute> createState() => _PlanActividadesRouteState();
@@ -98,7 +99,9 @@ class _PlanActividadesRouteState extends State<PlanActividadesRoute> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => DatosCentroRoute()),
+                                    builder: (context) => DatosCentroRoute(
+                                          idpostulante: widget.idpostulante,
+                                        )),
                               );
                             },
                             child: Text('Volver atrás'),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_session_manager/flutter_session_manager.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:footer/footer.dart';
 import 'package:footer/footer_view.dart';
 import 'package:movil_proyecto/Screens/datosencargado.dart';
@@ -82,6 +83,9 @@ class _HomepageState extends State<Homepage> {
       body: _paginaactual == 0
           ? SolicitudesPage(
               id: id,
+              solactivo: solactivo,
+              vclinicasM: vclinicas,
+              vcomunitarias: vcomunitarias,
             )
           : reportesPage(),
       bottomNavigationBar: BottomNavigationBar(
@@ -278,7 +282,15 @@ class _HomepageState extends State<Homepage> {
 
 class SolicitudesPage extends StatefulWidget {
   final int id;
-  const SolicitudesPage({super.key, required this.id});
+  final int solactivo;
+  final String vcomunitarias;
+  final String vclinicasM;
+  const SolicitudesPage(
+      {super.key,
+      required this.id,
+      required this.solactivo,
+      required this.vcomunitarias,
+      required this.vclinicasM});
 
   @override
   State<SolicitudesPage> createState() => _SolicitudesPageState();
@@ -313,12 +325,26 @@ class _SolicitudesPageState extends State<SolicitudesPage> {
               padding: const EdgeInsets.all(12.0),
               child: MaterialButton(
                 onPressed: () {
-                  print(widget.id);
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => DatosEncargadoRoute()),
-                  );
+                  if (widget.solactivo == 0) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => DatosEncargadoRoute(
+                                idpostulante: widget.id,
+                                vclinicas: widget.vclinicasM,
+                                vcomunitarias: widget.vcomunitarias,
+                              )),
+                    );
+                  } else {
+                    Fluttertoast.showToast(
+                        msg: "Actualmente tiene una solicitud activa",
+                        toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.BOTTOM,
+                        timeInSecForIosWeb: 1,
+                        backgroundColor: Color.fromRGBO(1, 71, 118, 1),
+                        textColor: Colors.white,
+                        fontSize: 16.0);
+                  }
                 },
                 child: Container(
                   width: MediaQuery.of(context).size.width * 0.65,
