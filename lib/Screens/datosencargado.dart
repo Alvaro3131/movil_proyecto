@@ -28,12 +28,15 @@ class ApplicationToolbar extends StatelessWidget with PreferredSizeWidget {
 }
 
 class _DatosEncargadoRouteState extends State<DatosEncargadoRoute> {
+  TextEditingController namesupervisor = TextEditingController();
+  TextEditingController telefonosupervisor = TextEditingController();
+  TextEditingController correosupervisor = TextEditingController();
   String gender = "Selecione el tipo de prácticas";
   List<String> listOfValue = [
     "Selecione el tipo de prácticas",
   ];
   final _formKey = GlobalKey<FormState>();
-
+  int idpractica = 0;
   Widget titlebox(String title) {
     return Padding(
       padding: const EdgeInsets.only(top: 18.0),
@@ -47,10 +50,11 @@ class _DatosEncargadoRouteState extends State<DatosEncargadoRoute> {
     );
   }
 
-  Widget textbox(String description) {
+  Widget textbox(String description, TextEditingController controller) {
     return Padding(
       padding: const EdgeInsets.only(left: 12, right: 12, top: 15),
       child: TextFormField(
+        controller: controller,
         validator: (value) => value!.isEmpty ? "Campo requerido" : null,
         decoration: InputDecoration(
           fillColor: const Color.fromARGB(255, 255, 255, 255),
@@ -118,9 +122,9 @@ class _DatosEncargadoRouteState extends State<DatosEncargadoRoute> {
                     thickness: 3,
                     color: Colors.transparent,
                   ),
-                  textbox("Nombres y Apellidos"),
-                  textbox("Nro de Telefono"),
-                  textbox("Correo Electrónico"),
+                  textbox("Nombres y Apellidos", namesupervisor),
+                  textbox("Nro de Telefono", telefonosupervisor),
+                  textbox("Correo Electrónico", correosupervisor),
                   Divider(
                     thickness: 3,
                     color: Colors.transparent,
@@ -132,13 +136,29 @@ class _DatosEncargadoRouteState extends State<DatosEncargadoRoute> {
                       width: MediaQuery.of(context).size.width * 0.4,
                       child: ElevatedButton(
                         onPressed: () {
+                          print(namesupervisor.text);
                           if (_formKey.currentState!.validate()) {
                             print("Datos Completos");
+                            print(gender);
+                            if (gender == "Practicas Clinicas") {
+                              idpractica = 1;
+                            }
+                            ;
+                            if (gender == "Practicas Comunitarias") {
+                              idpractica = 2;
+                            }
+                            ;
+
                             Navigator.push(
                               context,
                               MaterialPageRoute(
                                   builder: (context) => DatosCentroRoute(
                                         idpostulante: widget.idpostulante,
+                                        idpractica: idpractica,
+                                        nombresupervisor: namesupervisor.text,
+                                        telefonosupervisor:
+                                            telefonosupervisor.text,
+                                        correosupervisor: correosupervisor.text,
                                       )),
                             );
                           } else {

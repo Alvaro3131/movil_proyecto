@@ -11,6 +11,9 @@ import 'package:movil_proyecto/Screens/reportes.dart';
 import 'package:flutter_session_manager/flutter_session_manager.dart';
 
 class Homepage extends StatefulWidget {
+  final int validacion;
+
+  const Homepage({required this.validacion});
   @override
   State<Homepage> createState() => _HomepageState();
 }
@@ -86,8 +89,12 @@ class _HomepageState extends State<Homepage> {
               solactivo: solactivo,
               vclinicasM: vclinicas,
               vcomunitarias: vcomunitarias,
+              validacion: widget.validacion,
             )
-          : reportesPage(),
+          : reportesPage(
+              horasclinicas: hclinicas,
+              horascomunitarias: hcomunitarias,
+            ),
       bottomNavigationBar: BottomNavigationBar(
           currentIndex: _paginaactual,
           onTap: (index) {
@@ -285,12 +292,14 @@ class SolicitudesPage extends StatefulWidget {
   final int solactivo;
   final String vcomunitarias;
   final String vclinicasM;
+  final int validacion;
   const SolicitudesPage(
       {super.key,
       required this.id,
       required this.solactivo,
       required this.vcomunitarias,
-      required this.vclinicasM});
+      required this.vclinicasM,
+      required this.validacion});
 
   @override
   State<SolicitudesPage> createState() => _SolicitudesPageState();
@@ -325,7 +334,7 @@ class _SolicitudesPageState extends State<SolicitudesPage> {
               padding: const EdgeInsets.all(12.0),
               child: MaterialButton(
                 onPressed: () {
-                  if (widget.solactivo == 0) {
+                  if (widget.solactivo == 0 && widget.validacion == 0) {
                     Navigator.push(
                       context,
                       MaterialPageRoute(

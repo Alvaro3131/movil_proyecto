@@ -3,6 +3,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:flutter_session_manager/flutter_session_manager.dart';
+import 'package:movil_proyecto/constante.dart';
 import 'package:movil_proyecto/models/Postulante.dart';
 import 'package:movil_proyecto/models/token.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -39,15 +40,14 @@ class _LoginMobile extends State<LoginMobile> {
   bool _isObscure = true;
   bool _isVisible = false;
   Future<void> login() async {
-    final response =
-        await http.post(Uri.parse("http://10.40.1.63:3000/api/auth"),
-            headers: <String, String>{
-              'Content-Type': 'application/json; charset=UTF-8',
-            },
-            body: jsonEncode(<String, String>{
-              'username': username.text,
-              'password': password.text,
-            }));
+    final response = await http.post(Uri.parse("$backend/api/auth"),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(<String, String>{
+          'username': username.text,
+          'password': password.text,
+        }));
 
     if (response.statusCode == 200) {
       Token token = Token.fromJson(json.decode(response.body));
@@ -56,7 +56,7 @@ class _LoginMobile extends State<LoginMobile> {
       int validar = payload['idrol'];
 
       final res = await http.get(
-        Uri.parse("http://10.40.1.63:3000/api/auth/postulante/$id"),
+        Uri.parse("$backend/api/auth/postulante/$id"),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },

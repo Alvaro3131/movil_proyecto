@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
         // Cuando naveguemos hacia la ruta "/", crearemos el Widget FirstScreen
         '/': (context) => LoginMobile(),
         // Cuando naveguemos hacia la ruta "/second", crearemos el Widget SecondScreen
-        '/home': (context) => Homepage(),
+        '/home': (context) => Homepage(validacion: 0),
       },
     );
   }

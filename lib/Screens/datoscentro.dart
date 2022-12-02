@@ -3,8 +3,18 @@ import 'package:movil_proyecto/Screens/planactividades.dart';
 import 'package:movil_proyecto/Screens/datosencargado.dart';
 
 class DatosCentroRoute extends StatefulWidget {
+  final int idpractica;
+  final String nombresupervisor;
+  final String telefonosupervisor;
+  final String correosupervisor;
   final int idpostulante;
-  const DatosCentroRoute({super.key, required this.idpostulante});
+  const DatosCentroRoute(
+      {super.key,
+      required this.idpostulante,
+      required this.idpractica,
+      required this.nombresupervisor,
+      required this.telefonosupervisor,
+      required this.correosupervisor});
 
   @override
   State<DatosCentroRoute> createState() => _DatosCentroRouteState();
@@ -12,7 +22,15 @@ class DatosCentroRoute extends StatefulWidget {
 
 class _DatosCentroRouteState extends State<DatosCentroRoute> {
   final _formKey = GlobalKey<FormState>();
+  TextEditingController namecentro = TextEditingController();
+  TextEditingController departamentocentro = TextEditingController();
+  TextEditingController provinciacentro = TextEditingController();
+  TextEditingController distritocentro = TextEditingController();
+  TextEditingController direccioncentro = TextEditingController();
 
+  TextEditingController namerem = TextEditingController();
+  TextEditingController cargorem = TextEditingController();
+  TextEditingController correorem = TextEditingController();
   Widget titlebox(String title) {
     return Padding(
       padding: const EdgeInsets.only(top: 18.0),
@@ -26,10 +44,11 @@ class _DatosCentroRouteState extends State<DatosCentroRoute> {
     );
   }
 
-  Widget textbox(String description) {
+  Widget textbox(String description, TextEditingController controller) {
     return Padding(
       padding: const EdgeInsets.only(left: 12, right: 12, top: 15),
       child: TextFormField(
+        controller: controller,
         validator: (value) => value!.isEmpty ? "Campo requerido" : null,
         decoration: InputDecoration(
           fillColor: const Color.fromARGB(255, 255, 255, 255),
@@ -41,6 +60,12 @@ class _DatosCentroRouteState extends State<DatosCentroRoute> {
         ),
       ),
     );
+  }
+
+  @override
+  void initState() {
+    print(widget.idpractica);
+    super.initState();
   }
 
   @override
@@ -57,19 +82,19 @@ class _DatosCentroRouteState extends State<DatosCentroRoute> {
               child: Column(
                 children: <Widget>[
                   titlebox("DATOS DEL CENTRO DE PRÁCTICAS"),
-                  textbox("Nombre del centro de prácticas"),
-                  textbox("Departamento"),
-                  textbox("Provincia"),
-                  textbox("Distrito"),
-                  textbox("Dirección"),
+                  textbox("Nombre del centro de prácticas", namecentro),
+                  textbox("Departamento", departamentocentro),
+                  textbox("Provincia", provinciacentro),
+                  textbox("Distrito", distritocentro),
+                  textbox("Dirección", direccioncentro),
                   Divider(
                     thickness: 3,
                     color: Colors.transparent,
                   ),
                   titlebox("DATOS DEL ASISTENTE ENCARGADO"),
-                  textbox("Nombres y Apeliidos"),
-                  textbox("Cargo"),
-                  textbox("Correo electrónico"),
+                  textbox("Nombres y Apeliidos", namerem),
+                  textbox("Cargo", cargorem),
+                  textbox("Correo electrónico", correorem),
                   Divider(
                     thickness: 3,
                     color: Colors.transparent,
@@ -78,34 +103,6 @@ class _DatosCentroRouteState extends State<DatosCentroRoute> {
                     padding: const EdgeInsets.all(18.0),
                     child: Row(
                       children: [
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: SizedBox(
-                              height: MediaQuery.of(context).size.height * 0.07,
-                              child: ElevatedButton(
-                                onPressed: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            DatosEncargadoRoute(
-                                              idpostulante: widget.idpostulante,
-                                              vclinicas: "as",
-                                              vcomunitarias: "Asas",
-                                            )),
-                                  );
-                                },
-                                child: Text('Volver atrás'),
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor:
-                                      Color.fromRGBO(1, 71, 118, 1),
-                                  elevation: 10,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
                         Expanded(
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -122,6 +119,25 @@ class _DatosCentroRouteState extends State<DatosCentroRoute> {
                                               PlanActividadesRoute(
                                                 idpostulante:
                                                     widget.idpostulante,
+                                                idpractica: widget.idpractica,
+                                                nombresupervisor:
+                                                    widget.nombresupervisor,
+                                                telefonosupervisor:
+                                                    widget.telefonosupervisor,
+                                                correosupervisor:
+                                                    widget.correosupervisor,
+                                                namecentro: namecentro.text,
+                                                departamentocentro:
+                                                    departamentocentro.text,
+                                                provinciacentro:
+                                                    provinciacentro.text,
+                                                distritocentro:
+                                                    distritocentro.text,
+                                                direccioncentro:
+                                                    direccioncentro.text,
+                                                namerem: namerem.text,
+                                                cargorem: cargorem.text,
+                                                correorem: correorem.text,
                                               )),
                                     );
                                   } else {

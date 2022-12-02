@@ -3,10 +3,13 @@ import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:movil_proyecto/Screens/reportes/reportescomunitarias.dart';
 import 'package:movil_proyecto/Screens/reportes/reportesclinicas.dart';
 
-void main() => runApp(const reportesPage());
-
 class reportesPage extends StatefulWidget {
-  const reportesPage({super.key});
+  final int horascomunitarias;
+  final int horasclinicas;
+  const reportesPage(
+      {super.key,
+      required this.horascomunitarias,
+      required this.horasclinicas});
 
   @override
   State<reportesPage> createState() => _reportesPageState();
@@ -27,13 +30,20 @@ class _reportesPageState extends State<reportesPage> {
   }
 
   late List<_ChartData> data;
+  late List<ChartData> data1;
   late TooltipBehavior _tooltip;
 
   @override
   void initState() {
+    int horas = widget.horasclinicas + widget.horascomunitarias;
+
     data = [
-      _ChartData('Horas Hechas', 200),
-      _ChartData('Horas Restantes', 150),
+      _ChartData('Horas Hechas', horas),
+      _ChartData('Horas Restantes', 400 - horas),
+    ];
+    data1 = [
+      ChartData('Horas Hechas', widget.horasclinicas),
+      ChartData('Horas Restantes', widget.horascomunitarias),
     ];
     _tooltip = TooltipBehavior(enable: true);
     super.initState();
@@ -141,10 +151,10 @@ class _reportesPageState extends State<reportesPage> {
             ),
             SfCircularChart(
               series: <CircularSeries>[
-                RadialBarSeries<_ChartData, String>(
-                  dataSource: data,
-                  xValueMapper: (_ChartData data, _) => data.x,
-                  yValueMapper: (_ChartData data, _) => data.y,
+                RadialBarSeries<ChartData, String>(
+                  dataSource: data1,
+                  xValueMapper: (ChartData data, _) => data.x,
+                  yValueMapper: (ChartData data, _) => data.y,
                 )
               ],
             ),
@@ -195,7 +205,7 @@ class _reportesPageState extends State<reportesPage> {
                     dataSource: data,
                     xValueMapper: (_ChartData data, _) => data.x,
                     yValueMapper: (_ChartData data, _) => data.y,
-                    name: 'Practicas Comunitarias')
+                    name: 'Practicas')
               ],
             ),
             // SfCircularChart(series: <CircularSeries>[
