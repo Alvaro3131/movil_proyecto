@@ -1,17 +1,41 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bootstrap/flutter_bootstrap.dart';
 import 'package:movil_proyecto/Screens/revisarsolicitud/listado_solicitudes.dart';
+import 'package:movil_proyecto/constante.dart';
+import 'package:http/http.dart' as http;
 
 class RevisarSolicitud extends StatefulWidget {
-  const RevisarSolicitud({super.key});
+  final int idpostulante;
+  const RevisarSolicitud({required this.idpostulante});
 
   @override
   State<RevisarSolicitud> createState() => _RevisarSolicitudState();
 }
 
 class _RevisarSolicitudState extends State<RevisarSolicitud> {
+  List<Map<String, dynamic>> map = [];
+
+  Future<void> solicitudes1() async {
+    int id = widget.idpostulante;
+    int practica = 1;
+    final response = await http.get(
+      Uri.parse("$backend/api/auth/solicitud/$id/$practica"),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+    );
+    if (response.statusCode == 200) {
+      map = List<Map<String, dynamic>>.from(jsonDecode(response.body));
+      print(map[0]["centro_practicas"]);
+    } else {
+      print("No se obtuvieron datos");
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,13 +73,16 @@ class _RevisarSolicitudState extends State<RevisarSolicitud> {
                     children: [
                       Button(
                         onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => list_solicitud(
-                                      id: 1,
-                                    )),
-                          );
+                          solicitudes1().then((value) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => list_solicitud(
+                                        id: 1,
+                                        map: map,
+                                      )),
+                            );
+                          });
                         },
                         title: "Practicas Comunitarias",
                         color: Color.fromRGBO(1, 71, 118, 1),
@@ -67,6 +94,7 @@ class _RevisarSolicitudState extends State<RevisarSolicitud> {
                               MaterialPageRoute(
                                   builder: (context) => list_solicitud(
                                         id: 2,
+                                        map: map,
                                       )),
                             );
                           },

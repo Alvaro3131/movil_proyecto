@@ -10,7 +10,8 @@ import 'package:movil_proyecto/models/country.dart';
 class list_solicitud extends StatelessWidget {
   final int id;
   String text = 'asas';
-  list_solicitud({required this.id});
+  final List<Map<String, dynamic>> map;
+  list_solicitud({required this.id, required this.map});
 
   @override
   Widget build(BuildContext context) {
@@ -44,13 +45,13 @@ class list_solicitud extends StatelessWidget {
           ],
           horizontalMargin: 15,
           columnSpacing: 5,
-          rows: countries
-              .map((book) => DataRow(cells: [
+          rows: map
+              .map((value) => DataRow(cells: [
                     DataCell(
-                      Text(countries.indexOf(book).toString()),
+                      Text(map.indexOf(value).toString()),
                     ),
-                    DataCell(Text(book.name)),
-                    DataCell(Text(book.population.toString())),
+                    DataCell(Text(value["id_solicitud"].toString())),
+                    DataCell(Text(value["id_solicitud"].toString())),
                     DataCell(Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
@@ -71,7 +72,8 @@ class list_solicitud extends StatelessWidget {
                                             TextFormField(
                                               decoration: InputDecoration(
                                                 enabled: false,
-                                                hintText: book.name,
+                                                hintText:
+                                                    value["centro_practicas"],
                                                 icon: Icon(Icons
                                                     .account_balance_rounded),
                                               ),

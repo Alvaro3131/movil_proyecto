@@ -406,7 +406,10 @@ class _SolicitudesPageState extends State<SolicitudesPage> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => RevisarSolicitud()),
+                    MaterialPageRoute(
+                        builder: (context) => RevisarSolicitud(
+                              idpostulante: widget.id,
+                            )),
                   );
                 },
                 child: Container(
