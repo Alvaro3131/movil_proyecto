@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:intl/intl.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:movil_proyecto/Screens/revisarsolicitud/web_view.dart';
 import 'package:movil_proyecto/models/country.dart';
@@ -36,12 +37,12 @@ class list_solicitud extends StatelessWidget {
             child: DataTable2(
           columns: [
             DataColumn2(
-              label: Text('ID'),
+              label: Text('#'),
               size: ColumnSize.S,
             ),
-            DataColumn(label: Text('Book')),
-            DataColumn(label: Text('Author')),
-            DataColumn(label: Center(child: Text('Category')))
+            DataColumn(label: Text('Registro')),
+            DataColumn(label: Text('Estado')),
+            DataColumn(label: Center(child: Text('ACCIONES')))
           ],
           horizontalMargin: 15,
           columnSpacing: 5,
@@ -50,8 +51,9 @@ class list_solicitud extends StatelessWidget {
                     DataCell(
                       Text(map.indexOf(value).toString()),
                     ),
-                    DataCell(Text(value["id_solicitud"].toString())),
-                    DataCell(Text(value["id_solicitud"].toString())),
+                    DataCell(Text(DateFormat.yMd()
+                        .format(DateTime.parse(value["fecha_reg"])))),
+                    DataCell(Text(value["nombre_solestado"].toString())),
                     DataCell(Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
@@ -84,7 +86,13 @@ class list_solicitud extends StatelessWidget {
                                                 hintStyle:
                                                     TextStyle(fontSize: 10),
                                                 hintText:
-                                                    "Lima,Lima,Chaclacayo Mz A lt 14 nueva alianza",
+                                                    value["departamento"] +
+                                                        ", " +
+                                                        value["provincia"] +
+                                                        ", " +
+                                                        value["distrito"] +
+                                                        ", " +
+                                                        value["direccion"],
                                                 icon: Icon(
                                                     Icons.add_location_rounded),
                                               ),
@@ -98,23 +106,21 @@ class list_solicitud extends StatelessWidget {
                                             TextFormField(
                                               decoration: InputDecoration(
                                                 enabled: false,
-                                                hintText:
-                                                    "Alvaro Alonso Alva Chipana",
+                                                hintText: value["sup_nombre"],
                                                 icon: Icon(Icons.account_box),
                                               ),
                                             ),
                                             TextFormField(
                                               decoration: InputDecoration(
                                                 enabled: false,
-                                                hintText:
-                                                    "alvaro.alvac@gmail.com",
+                                                hintText: value["sup_correo"],
                                                 icon: Icon(Icons.email),
                                               ),
                                             ),
                                             TextFormField(
                                               decoration: InputDecoration(
                                                 enabled: false,
-                                                hintText: "987618614",
+                                                hintText: value["sup_telefono"],
                                                 icon: Icon(Icons.phone),
                                               ),
                                             ),
@@ -127,14 +133,21 @@ class list_solicitud extends StatelessWidget {
                                             TextFormField(
                                               decoration: InputDecoration(
                                                 enabled: false,
-                                                hintText: "David Reyna",
+                                                hintText: value["rem_nombre"],
                                                 icon: Icon(Icons.account_box),
                                               ),
                                             ),
                                             TextFormField(
                                               decoration: InputDecoration(
                                                 enabled: false,
-                                                hintText: "Director",
+                                                hintText: value["rem_cargo"],
+                                                icon: Icon(Icons.phone),
+                                              ),
+                                            ),
+                                            TextFormField(
+                                              decoration: InputDecoration(
+                                                enabled: false,
+                                                hintText: value["rem_correo"],
                                                 icon: Icon(Icons.add_comment),
                                               ),
                                             ),
@@ -147,7 +160,7 @@ class list_solicitud extends StatelessWidget {
                                             TextFormField(
                                               decoration: InputDecoration(
                                                 enabled: false,
-                                                hintText: "11/06/2022",
+                                                hintText: value["fecha_inicio"],
                                                 icon: Icon(
                                                     Icons.date_range_outlined),
                                               ),
@@ -155,7 +168,7 @@ class list_solicitud extends StatelessWidget {
                                             TextFormField(
                                               decoration: InputDecoration(
                                                 enabled: false,
-                                                hintText: "11/06/2022",
+                                                hintText: value["fecha_fin"],
                                                 icon: Icon(
                                                     Icons.date_range_outlined),
                                               ),
@@ -184,32 +197,6 @@ class list_solicitud extends StatelessWidget {
                                 builder: (context) => Container(
                                   height: 300,
                                   child: Column(children: [
-                                    ElevatedButton.icon(
-                                      icon: Icon(Icons.picture_as_pdf),
-                                      style: ElevatedButton.styleFrom(
-                                          fixedSize: const Size(240, 20),
-                                          backgroundColor:
-                                              Color.fromRGBO(1, 71, 118, 1),
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(20.0),
-                                          )),
-                                      onPressed: () {
-                                        Navigator.of(context).push(
-                                            MaterialPageRoute(
-                                                builder: (BuildContext
-                                                        context) =>
-                                                    WebViewpage(
-                                                        title:
-                                                            "Solciitud Carta",
-                                                        url:
-                                                            "https://firebasestorage.googleapis.com/v0/b/storagemunicipalidad.appspot.com/o/images%2Fimage%3A1000021367?alt=media&token=93a04c1d-ee59-412e-b784-251cac881c35")));
-                                      },
-                                      label: Text(
-                                        "Solciitud Carta",
-                                        textAlign: TextAlign.center,
-                                      ),
-                                    ),
                                     Container(
                                       child: ElevatedButton.icon(
                                         icon: Icon(Icons.picture_as_pdf),
@@ -222,13 +209,18 @@ class list_solicitud extends StatelessWidget {
                                                   BorderRadius.circular(20.0),
                                             )),
                                         onPressed: () {
-                                          Navigator.of(context).push(MaterialPageRoute(
-                                              builder: (BuildContext context) =>
-                                                  WebViewpage(
-                                                      title:
-                                                          "Carta de Presentacion",
-                                                      url:
-                                                          "https://firebasestorage.googleapis.com/v0/b/storagemunicipalidad.appspot.com/o/images%2Fimage%3A1000021367?alt=media&token=93a04c1d-ee59-412e-b784-251cac881c35")));
+                                          if (value["INFO"] == null) {
+                                            value["INFO"] = "null";
+                                          }
+                                          Navigator.of(context).push(
+                                              MaterialPageRoute(
+                                                  builder: (BuildContext
+                                                          context) =>
+                                                      WebViewpage(
+                                                          title:
+                                                              "Carta de Presentacion",
+                                                          url: value[
+                                                              "link_carta"])));
                                         },
                                         label: Text(
                                           "Carta de Presentacion",
@@ -247,18 +239,20 @@ class list_solicitud extends StatelessWidget {
                                                 BorderRadius.circular(20.0),
                                           )),
                                       onPressed: () {
-                                        Navigator.of(context).push(
-                                            MaterialPageRoute(
-                                                builder: (BuildContext
-                                                        context) =>
-                                                    WebViewpage(
-                                                        title:
-                                                            "Guia de Practicas",
-                                                        url:
-                                                            "https://firebasestorage.googleapis.com/v0/b/storagemunicipalidad.appspot.com/o/images%2Fimage%3A1000021367?alt=media&token=93a04c1d-ee59-412e-b784-251cac881c35")));
+                                        if (value["link_guiapracticas"] ==
+                                            null) {
+                                          value["link_guiapracticas"] = "null";
+                                        }
+                                        Navigator.of(context).push(MaterialPageRoute(
+                                            builder: (BuildContext context) =>
+                                                WebViewpage(
+                                                    title:
+                                                        "Guia de Practicas Inicio",
+                                                    url: value[
+                                                        "link_guiapracticas"])));
                                       },
                                       label: Text(
-                                        "Guia de Practicas",
+                                        "Guia de Practicas Inicio",
                                         textAlign: TextAlign.center,
                                       ),
                                     ),
@@ -273,13 +267,17 @@ class list_solicitud extends StatelessWidget {
                                                 BorderRadius.circular(20.0),
                                           )),
                                       onPressed: () {
-                                        Navigator.of(context).push(MaterialPageRoute(
-                                            builder: (BuildContext context) =>
-                                                WebViewpage(
-                                                    title:
-                                                        "Informe de Practicas",
-                                                    url:
-                                                        "https://firebasestorage.googleapis.com/v0/b/storagemunicipalidad.appspot.com/o/images%2Fimage%3A1000021367?alt=media&token=93a04c1d-ee59-412e-b784-251cac881c35")));
+                                        if (value["INFO"] == null) {
+                                          value["INFO"] = "null";
+                                        }
+                                        Navigator.of(context).push(
+                                            MaterialPageRoute(
+                                                builder: (BuildContext
+                                                        context) =>
+                                                    WebViewpage(
+                                                        title:
+                                                            "Informe de Practicas",
+                                                        url: value["INFO"])));
                                       },
                                       label: Text(
                                         "Informe de Practicas",
@@ -297,13 +295,16 @@ class list_solicitud extends StatelessWidget {
                                                 BorderRadius.circular(20.0),
                                           )),
                                       onPressed: () {
+                                        if (value["CONSTANCIAHORAS"] == null) {
+                                          value["CONSTANCIAHORAS"] = "null";
+                                        }
                                         Navigator.of(context).push(MaterialPageRoute(
                                             builder: (BuildContext context) =>
                                                 WebViewpage(
                                                     title:
                                                         "Constancias de Horas",
-                                                    url:
-                                                        "https://www.facebook.com")));
+                                                    url: value[
+                                                        "CONSTANCIAHORAS"])));
                                       },
                                       label: Text(
                                         "Constancias de Horas",
@@ -321,6 +322,9 @@ class list_solicitud extends StatelessWidget {
                                                 BorderRadius.circular(20.0),
                                           )),
                                       onPressed: () {
+                                        if (value["GUIAPRACTICAS"] == null) {
+                                          value["GUIAPRACTICAS"] = "null";
+                                        }
                                         Navigator.of(context).push(
                                             MaterialPageRoute(
                                                 builder: (BuildContext
@@ -328,8 +332,8 @@ class list_solicitud extends StatelessWidget {
                                                     WebViewpage(
                                                         title:
                                                             "Guia de Practicas",
-                                                        url:
-                                                            "https://firebasestorage.googleapis.com/v0/b/storagemunicipalidad.appspot.com/o/images%2Fimage%3A1000021367?alt=media&token=93a04c1d-ee59-412e-b784-251cac881c35")));
+                                                        url: value[
+                                                            "GUIAPRACTICAS"])));
                                       },
                                       label: Text(
                                         "Guia de Practicas",

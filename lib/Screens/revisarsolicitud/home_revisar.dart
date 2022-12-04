@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bootstrap/flutter_bootstrap.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:movil_proyecto/Screens/revisarsolicitud/listado_solicitudes.dart';
+import 'package:movil_proyecto/Screens/revisarsolicitud/solicitudactual.dart';
 import 'package:movil_proyecto/constante.dart';
 import 'package:http/http.dart' as http;
 
@@ -19,9 +21,9 @@ class RevisarSolicitud extends StatefulWidget {
 class _RevisarSolicitudState extends State<RevisarSolicitud> {
   List<Map<String, dynamic>> map = [];
 
-  Future<void> solicitudes1() async {
+  Future<void> solicitudes(int valor) async {
     int id = widget.idpostulante;
-    int practica = 1;
+    int practica = valor;
     final response = await http.get(
       Uri.parse("$backend/api/auth/solicitud/$id/$practica"),
       headers: <String, String>{
@@ -30,7 +32,6 @@ class _RevisarSolicitudState extends State<RevisarSolicitud> {
     );
     if (response.statusCode == 200) {
       map = List<Map<String, dynamic>>.from(jsonDecode(response.body));
-      print(map[0]["centro_practicas"]);
     } else {
       print("No se obtuvieron datos");
     }
@@ -73,15 +74,29 @@ class _RevisarSolicitudState extends State<RevisarSolicitud> {
                     children: [
                       Button(
                         onPressed: () {
-                          solicitudes1().then((value) {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => list_solicitud(
-                                        id: 1,
-                                        map: map,
-                                      )),
-                            );
+                          solicitudes(2).then((value) {
+                            print(map);
+                            if (map.isEmpty) {
+                              Fluttertoast.showToast(
+                                  msg:
+                                      "Lo sentimos no cuenta con solicitudes comunitarias",
+                                  toastLength: Toast.LENGTH_SHORT,
+                                  gravity: ToastGravity.BOTTOM,
+                                  timeInSecForIosWeb: 1,
+                                  backgroundColor:
+                                      Color.fromRGBO(1, 71, 118, 1),
+                                  textColor: Colors.white,
+                                  fontSize: 16.0);
+                            } else {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => list_solicitud(
+                                          id: 1,
+                                          map: map,
+                                        )),
+                              );
+                            }
                           });
                         },
                         title: "Practicas Comunitarias",
@@ -89,17 +104,42 @@ class _RevisarSolicitudState extends State<RevisarSolicitud> {
                       ),
                       Button(
                           onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => list_solicitud(
-                                        id: 2,
-                                        map: map,
-                                      )),
-                            );
+                            solicitudes(1).then((value) {
+                              if (map.isEmpty) {
+                                Fluttertoast.showToast(
+                                    msg:
+                                        "Lo sentimos no cuenta con solicitudes clinicas",
+                                    toastLength: Toast.LENGTH_SHORT,
+                                    gravity: ToastGravity.BOTTOM,
+                                    timeInSecForIosWeb: 1,
+                                    backgroundColor:
+                                        Color.fromRGBO(1, 71, 118, 1),
+                                    textColor: Colors.white,
+                                    fontSize: 16.0);
+                              } else {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => list_solicitud(
+                                            id: 2,
+                                            map: map,
+                                          )),
+                                );
+                              }
+                            });
                           },
                           title: "Practicas Clinicas",
                           color: Color.fromRGBO(109, 49, 49, 1)),
+                      Button(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => SolicitudActual()),
+                            );
+                          },
+                          title: "Solicitud ACTUAL",
+                          color: Color.fromARGB(255, 10, 168, 70)),
                     ],
                   ),
                 )
