@@ -6,6 +6,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bootstrap/flutter_bootstrap.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:movil_proyecto/Screens/revisarsolicitud/listado_solicitudes.dart';
+import 'package:movil_proyecto/Screens/revisarsolicitud/solicitud.dart';
 import 'package:movil_proyecto/Screens/revisarsolicitud/solicitudactual.dart';
 import 'package:movil_proyecto/constante.dart';
 import 'package:http/http.dart' as http;
@@ -135,7 +136,7 @@ class _RevisarSolicitudState extends State<RevisarSolicitud> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => SolicitudActual()),
+                                  builder: (context) => MyWidget()),
                             );
                           },
                           title: "Solicitud ACTUAL",

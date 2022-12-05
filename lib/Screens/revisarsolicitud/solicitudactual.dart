@@ -3,7 +3,8 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
 class SolicitudActual extends StatelessWidget {
-  const SolicitudActual({super.key});
+  var _isButtonDisabled = false;
+  SolicitudActual({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +27,10 @@ class SolicitudActual extends StatelessWidget {
       return Padding(
         padding: const EdgeInsets.only(left: 12, right: 12, top: 15),
         child: TextFormField(
+          onChanged: (value) {
+            _isButtonDisabled = true;
+            print(_isButtonDisabled);
+          },
           controller: controller,
           validator: (value) => value!.isEmpty ? "Campo requerido" : null,
           decoration: InputDecoration(
@@ -40,7 +45,28 @@ class SolicitudActual extends StatelessWidget {
       );
     }
 
-    namecentro.text = "ASasas";
+    Widget textbox1(String description, TextEditingController controller) {
+      return Padding(
+        padding: const EdgeInsets.only(left: 12, right: 12, top: 15),
+        child: TextFormField(
+          enabled: false,
+          controller: controller,
+          maxLines: 10,
+          minLines: 2,
+          validator: (value) => value!.isEmpty ? "Campo requerido" : null,
+          decoration: InputDecoration(
+            fillColor: const Color.fromARGB(255, 255, 255, 255),
+            filled: true,
+            hintText: description,
+            labelText: description,
+            suffixIcon: const Icon(Icons.verified_user_sharp),
+            border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+          ),
+        ),
+      );
+    }
+
+    namecentro.text = "saaaaaaaaaa";
 
     return Scaffold(
       appBar: AppBar(
@@ -67,15 +93,34 @@ class SolicitudActual extends StatelessWidget {
                   ],
                 )
               ]),
-              textbox("description", namecentro),
-              textbox("description", namecentro),
-              textbox("description", namecentro),
-              textbox("description", namecentro),
-              textbox("description", namecentro),
-              textbox("description", namecentro),
-              textbox("description", namecentro),
-              textbox("description", namecentro),
-              ElevatedButton(onPressed: () {}, child: Text("asasas"))
+              titlebox("Obsebaciones de la Solicitud"),
+              textbox1("Obserbaciones", namecentro),
+              Center(
+                child: Row(
+                  children: [
+                    IconButton(
+                        onPressed:
+                            _isButtonDisabled ? () => {print("object")} : null,
+                        icon: Icon(Icons.abc)),
+                    IconButton(onPressed: () {}, icon: Icon(Icons.abc)),
+                    IconButton(onPressed: () {}, icon: Icon(Icons.abc))
+                  ],
+                ),
+              ),
+              titlebox("Centro de Practicas"),
+              textbox("Nombre", namecentro),
+              textbox("Departamento", namecentro),
+              textbox("Provincia", namecentro),
+              textbox("Distrito", namecentro),
+              textbox("Direccion", namecentro),
+              titlebox("Supervisor"),
+              textbox("Nombre", namecentro),
+              textbox("Correo", namecentro),
+              textbox("Telefono", namecentro),
+              titlebox("Director"),
+              textbox("Nombre", namecentro),
+              textbox("Cargo", namecentro),
+              textbox("Telefono", namecentro),
             ]),
           )),
     );

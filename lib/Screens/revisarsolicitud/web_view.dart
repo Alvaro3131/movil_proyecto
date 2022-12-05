@@ -10,7 +10,6 @@ class WebViewpage extends StatelessWidget {
       Completer<WebViewController>();
   WebViewpage({required this.title, required this.url});
 
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
