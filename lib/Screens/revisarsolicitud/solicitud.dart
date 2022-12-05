@@ -22,9 +22,10 @@ class _MyWidgetState extends State<MyWidget> {
   UploadTask? upload1;
   UploadTask? upload2;
   String url1 = "";
+  var checkestado = true;
   String url2 = "";
   var _isButtonDisabled = false;
-  int estado = 5;
+  int estado = 4;
   TextEditingController namecentro = TextEditingController();
   Widget titlebox(String title) {
     return Padding(
@@ -39,12 +40,16 @@ class _MyWidgetState extends State<MyWidget> {
     );
   }
 
-  bool() {
-    if (estado <= 3) {
-      return false;
+  @override
+  void initState() {
+    namecentro.text = "Asasas";
+    if (estado >= 3) {
+      checkestado = false;
+      print(checkestado);
     } else {
-      return true;
+      checkestado = true;
     }
+    super.initState();
   }
 
   Future selectFile() async {
@@ -88,7 +93,7 @@ class _MyWidgetState extends State<MyWidget> {
     return Padding(
       padding: const EdgeInsets.only(left: 12, right: 12, top: 15),
       child: TextFormField(
-        enabled: bool(),
+        enabled: checkestado,
         onChanged: (value) {
           setState(() {
             _isButtonDisabled = true;

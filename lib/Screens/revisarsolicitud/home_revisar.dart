@@ -38,6 +38,23 @@ class _RevisarSolicitudState extends State<RevisarSolicitud> {
     }
   }
 
+  Future<void> solicitudactual() async {
+    int id = widget.idpostulante;
+
+    final response = await http.get(
+      Uri.parse("$backend/api/auth/solicitud/actual/$id"),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+    );
+    if (response.statusCode == 200) {
+      map = List<Map<String, dynamic>>.from(jsonDecode(response.body));
+      print(map);
+    } else {
+      print("No se obtuvieron datos");
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -133,11 +150,13 @@ class _RevisarSolicitudState extends State<RevisarSolicitud> {
                           color: Color.fromRGBO(109, 49, 49, 1)),
                       Button(
                           onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => MyWidget()),
-                            );
+                            solicitudactual().then((value) {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => MyWidget()),
+                              );
+                            });
                           },
                           title: "Solicitud ACTUAL",
                           color: Color.fromARGB(255, 10, 168, 70)),
