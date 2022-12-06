@@ -34,6 +34,7 @@ class _RevisarSolicitudState extends State<RevisarSolicitud> {
     if (response.statusCode == 200) {
       map = List<Map<String, dynamic>>.from(jsonDecode(response.body));
     } else {
+      // ignore: avoid_print
       print("No se obtuvieron datos");
     }
   }
@@ -42,14 +43,13 @@ class _RevisarSolicitudState extends State<RevisarSolicitud> {
     int id = widget.idpostulante;
 
     final response = await http.get(
-      Uri.parse("$backend/api/auth/solicitud/actual/$id"),
+      Uri.parse("$backend/api/auth/solicitud/actu/$id"),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
     );
     if (response.statusCode == 200) {
       map = List<Map<String, dynamic>>.from(jsonDecode(response.body));
-      print(map);
     } else {
       print("No se obtuvieron datos");
     }
@@ -60,7 +60,7 @@ class _RevisarSolicitudState extends State<RevisarSolicitud> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 3, 70, 115),
+        backgroundColor: const Color.fromARGB(255, 3, 70, 115),
         title: const Text("Revisar Solicitudes"),
       ),
       body: Padding(
@@ -68,7 +68,7 @@ class _RevisarSolicitudState extends State<RevisarSolicitud> {
         child: Container(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             color: Colors.white,
             // Set border width
             borderRadius: BorderRadius.all(
@@ -79,7 +79,7 @@ class _RevisarSolicitudState extends State<RevisarSolicitud> {
               child: Center(
             child: Column(
               children: <Widget>[
-                Text(
+                const Text(
                   "ELIGA EL TIPO DE SOLICITUD",
                   textAlign: TextAlign.center,
                   style: TextStyle(
@@ -87,17 +87,45 @@ class _RevisarSolicitudState extends State<RevisarSolicitud> {
                       fontWeight: FontWeight.bold,
                       fontSize: 17),
                 ),
-                Container(
-                  child: Column(
-                    children: [
-                      Button(
+                Column(
+                  children: [
+                    Button(
+                      onPressed: () {
+                        solicitudes(2).then((value) {
+                          print(map);
+                          if (map.isEmpty) {
+                            Fluttertoast.showToast(
+                                msg:
+                                    "Lo sentimos no cuenta con solicitudes comunitarias",
+                                toastLength: Toast.LENGTH_SHORT,
+                                gravity: ToastGravity.BOTTOM,
+                                timeInSecForIosWeb: 1,
+                                backgroundColor:
+                                    const Color.fromRGBO(1, 71, 118, 1),
+                                textColor: Colors.white,
+                                fontSize: 16.0);
+                          } else {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => list_solicitud(
+                                        id: 1,
+                                        map: map,
+                                      )),
+                            );
+                          }
+                        });
+                      },
+                      title: "Practicas Comunitarias",
+                      color: Color.fromRGBO(1, 71, 118, 1),
+                    ),
+                    Button(
                         onPressed: () {
-                          solicitudes(2).then((value) {
-                            print(map);
+                          solicitudes(1).then((value) {
                             if (map.isEmpty) {
                               Fluttertoast.showToast(
                                   msg:
-                                      "Lo sentimos no cuenta con solicitudes comunitarias",
+                                      "Lo sentimos no cuenta con solicitudes clinicas",
                                   toastLength: Toast.LENGTH_SHORT,
                                   gravity: ToastGravity.BOTTOM,
                                   timeInSecForIosWeb: 1,
@@ -110,58 +138,43 @@ class _RevisarSolicitudState extends State<RevisarSolicitud> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => list_solicitud(
-                                          id: 1,
+                                          id: 2,
                                           map: map,
                                         )),
                               );
                             }
                           });
                         },
-                        title: "Practicas Comunitarias",
-                        color: Color.fromRGBO(1, 71, 118, 1),
-                      ),
-                      Button(
-                          onPressed: () {
-                            solicitudes(1).then((value) {
-                              if (map.isEmpty) {
-                                Fluttertoast.showToast(
-                                    msg:
-                                        "Lo sentimos no cuenta con solicitudes clinicas",
-                                    toastLength: Toast.LENGTH_SHORT,
-                                    gravity: ToastGravity.BOTTOM,
-                                    timeInSecForIosWeb: 1,
-                                    backgroundColor:
-                                        Color.fromRGBO(1, 71, 118, 1),
-                                    textColor: Colors.white,
-                                    fontSize: 16.0);
-                              } else {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => list_solicitud(
-                                            id: 2,
-                                            map: map,
-                                          )),
-                                );
-                              }
-                            });
-                          },
-                          title: "Practicas Clinicas",
-                          color: Color.fromRGBO(109, 49, 49, 1)),
-                      Button(
-                          onPressed: () {
-                            solicitudactual().then((value) {
+                        title: "Practicas Clinicas",
+                        color: Color.fromRGBO(109, 49, 49, 1)),
+                    Button(
+                        onPressed: () {
+                          solicitudactual().then((value) {
+                            if (map.isEmpty) {
+                              Fluttertoast.showToast(
+                                  msg:
+                                      "Lo sentimos no cuenta con solicitudes clinicas",
+                                  toastLength: Toast.LENGTH_SHORT,
+                                  gravity: ToastGravity.BOTTOM,
+                                  timeInSecForIosWeb: 1,
+                                  backgroundColor:
+                                      Color.fromRGBO(1, 71, 118, 1),
+                                  textColor: Colors.white,
+                                  fontSize: 16.0);
+                            } else {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => MyWidget()),
+                                    builder: (context) => MyWidget(
+                                          map: map,
+                                        )),
                               );
-                            });
-                          },
-                          title: "Solicitud ACTUAL",
-                          color: Color.fromARGB(255, 10, 168, 70)),
-                    ],
-                  ),
+                            }
+                          });
+                        },
+                        title: "Solicitud ACTUAL",
+                        color: Color.fromARGB(255, 10, 168, 70)),
+                  ],
                 )
               ],
             ),
