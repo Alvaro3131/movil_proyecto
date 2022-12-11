@@ -69,21 +69,7 @@ class _reportesPageState extends State<reportesPage> {
               child: Container(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Text(
-                      "Total Horas Practicas Comunitarias: 350",
-                      textAlign: TextAlign.left,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 15.0, top: 8),
-                      child: Text(
-                        "Horas Validadas: 200",
-                        textAlign: TextAlign.left,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    )
-                  ],
+                  children: <Widget>[],
                 ),
               ),
             ),
@@ -93,20 +79,7 @@ class _reportesPageState extends State<reportesPage> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   // ignore: prefer_const_literals_to_create_immutables
-                  children: <Widget>[
-                    Text(
-                      "Total Horas Practicas Clínicas: 350",
-                      textAlign: TextAlign.left,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 15.0),
-                      child: Text(
-                        "Horas Validadas: 150",
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    )
-                  ],
+                  children: <Widget>[],
                 ),
               ),
             ),

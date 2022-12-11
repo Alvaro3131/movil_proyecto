@@ -3,10 +3,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:movil_proyecto/Screens/revisarsolicitud/web_view.dart';
 import 'package:movil_proyecto/models/country.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class list_solicitud extends StatelessWidget {
   final int id;
@@ -208,19 +210,29 @@ class list_solicitud extends StatelessWidget {
                                               borderRadius:
                                                   BorderRadius.circular(20.0),
                                             )),
-                                        onPressed: () {
-                                          if (value["INFO"] == null) {
-                                            value["INFO"] = "null";
+                                        onPressed: () async {
+                                          if (value["INFO"] == "" ||
+                                              value["INFO"] == null) {
+                                            Fluttertoast.showToast(
+                                                msg: "Error no hay archivo",
+                                                toastLength: Toast.LENGTH_SHORT,
+                                                gravity: ToastGravity.BOTTOM,
+                                                timeInSecForIosWeb: 1,
+                                                backgroundColor: Color.fromRGBO(
+                                                    1, 71, 118, 1),
+                                                textColor: Colors.white,
+                                                fontSize: 16.0);
+                                          } else {
+                                            final Uri url =
+                                                Uri.parse(value["INFO"]);
+                                            if (!await launchUrl(
+                                              url,
+                                              mode: LaunchMode
+                                                  .externalApplication,
+                                            )) {
+                                              throw 'Could not launch $url';
+                                            }
                                           }
-                                          Navigator.of(context).push(
-                                              MaterialPageRoute(
-                                                  builder: (BuildContext
-                                                          context) =>
-                                                      WebViewpage(
-                                                          title:
-                                                              "Carta de Presentacion",
-                                                          url: value[
-                                                              "link_carta"])));
                                         },
                                         label: Text(
                                           "Carta de Presentacion",
@@ -238,18 +250,29 @@ class list_solicitud extends StatelessWidget {
                                             borderRadius:
                                                 BorderRadius.circular(20.0),
                                           )),
-                                      onPressed: () {
-                                        if (value["link_guiapracticas"] ==
-                                            null) {
-                                          value["link_guiapracticas"] = "null";
+                                      onPressed: () async {
+                                        if (value["link_guiapracticas"] == "" ||
+                                            value["link_guiapracticas"] ==
+                                                null) {
+                                          Fluttertoast.showToast(
+                                              msg: "Error no hay archivo",
+                                              toastLength: Toast.LENGTH_SHORT,
+                                              gravity: ToastGravity.BOTTOM,
+                                              timeInSecForIosWeb: 1,
+                                              backgroundColor:
+                                                  Color.fromRGBO(1, 71, 118, 1),
+                                              textColor: Colors.white,
+                                              fontSize: 16.0);
+                                        } else {
+                                          final Uri url = Uri.parse(
+                                              value["link_guiapracticas"]);
+
+                                          if (!await launchUrl(
+                                            url,
+                                            mode:
+                                                LaunchMode.externalApplication,
+                                          )) {}
                                         }
-                                        Navigator.of(context).push(MaterialPageRoute(
-                                            builder: (BuildContext context) =>
-                                                WebViewpage(
-                                                    title:
-                                                        "Guia de Practicas Inicio",
-                                                    url: value[
-                                                        "link_guiapracticas"])));
                                       },
                                       label: Text(
                                         "Guia de Practicas Inicio",
@@ -266,18 +289,29 @@ class list_solicitud extends StatelessWidget {
                                             borderRadius:
                                                 BorderRadius.circular(20.0),
                                           )),
-                                      onPressed: () {
-                                        if (value["INFO"] == null) {
-                                          value["INFO"] = "null";
+                                      onPressed: () async {
+                                        if (value["INFO"] == "" ||
+                                            value["INFO"] == null) {
+                                          Fluttertoast.showToast(
+                                              msg: "Error no hay archivo",
+                                              toastLength: Toast.LENGTH_SHORT,
+                                              gravity: ToastGravity.BOTTOM,
+                                              timeInSecForIosWeb: 1,
+                                              backgroundColor:
+                                                  Color.fromRGBO(1, 71, 118, 1),
+                                              textColor: Colors.white,
+                                              fontSize: 16.0);
+                                        } else {
+                                          final Uri url =
+                                              Uri.parse(value["INFO"]);
+                                          if (!await launchUrl(
+                                            url,
+                                            mode:
+                                                LaunchMode.externalApplication,
+                                          )) {
+                                            throw 'Could not launch $url';
+                                          }
                                         }
-                                        Navigator.of(context).push(
-                                            MaterialPageRoute(
-                                                builder: (BuildContext
-                                                        context) =>
-                                                    WebViewpage(
-                                                        title:
-                                                            "Informe de Practicas",
-                                                        url: value["INFO"])));
                                       },
                                       label: Text(
                                         "Informe de Practicas",
@@ -294,17 +328,29 @@ class list_solicitud extends StatelessWidget {
                                             borderRadius:
                                                 BorderRadius.circular(20.0),
                                           )),
-                                      onPressed: () {
-                                        if (value["CONSTANCIAHORAS"] == null) {
-                                          value["CONSTANCIAHORAS"] = "null";
+                                      onPressed: () async {
+                                        if (value["CONSTANCIAHORAS"] == "" ||
+                                            value["CONSTANCIAHORAS"] == null) {
+                                          Fluttertoast.showToast(
+                                              msg: "Error no hay archivo",
+                                              toastLength: Toast.LENGTH_SHORT,
+                                              gravity: ToastGravity.BOTTOM,
+                                              timeInSecForIosWeb: 1,
+                                              backgroundColor:
+                                                  Color.fromRGBO(1, 71, 118, 1),
+                                              textColor: Colors.white,
+                                              fontSize: 16.0);
+                                        } else {
+                                          final Uri url = Uri.parse(
+                                              value["CONSTANCIAHORAS"]);
+                                          if (!await launchUrl(
+                                            url,
+                                            mode:
+                                                LaunchMode.externalApplication,
+                                          )) {
+                                            throw 'Could not launch $url';
+                                          }
                                         }
-                                        Navigator.of(context).push(MaterialPageRoute(
-                                            builder: (BuildContext context) =>
-                                                WebViewpage(
-                                                    title:
-                                                        "Constancias de Horas",
-                                                    url: value[
-                                                        "CONSTANCIAHORAS"])));
                                       },
                                       label: Text(
                                         "Constancias de Horas",
@@ -321,19 +367,29 @@ class list_solicitud extends StatelessWidget {
                                             borderRadius:
                                                 BorderRadius.circular(20.0),
                                           )),
-                                      onPressed: () {
-                                        if (value["GUIAPRACTICAS"] == null) {
-                                          value["GUIAPRACTICAS"] = "null";
+                                      onPressed: () async {
+                                        if (value["GUIAPRACTICAS"] == "" ||
+                                            value["GUIAPRACTICAS"] == null) {
+                                          Fluttertoast.showToast(
+                                              msg: "Error no hay archivo",
+                                              toastLength: Toast.LENGTH_SHORT,
+                                              gravity: ToastGravity.BOTTOM,
+                                              timeInSecForIosWeb: 1,
+                                              backgroundColor:
+                                                  Color.fromRGBO(1, 71, 118, 1),
+                                              textColor: Colors.white,
+                                              fontSize: 16.0);
+                                        } else {
+                                          final Uri url = Uri.parse(
+                                              value["CONSTANCIAHORAS"]);
+                                          if (!await launchUrl(
+                                            url,
+                                            mode:
+                                                LaunchMode.externalApplication,
+                                          )) {
+                                            throw 'Could not launch $url';
+                                          }
                                         }
-                                        Navigator.of(context).push(
-                                            MaterialPageRoute(
-                                                builder: (BuildContext
-                                                        context) =>
-                                                    WebViewpage(
-                                                        title:
-                                                            "Guia de Practicas",
-                                                        url: value[
-                                                            "GUIAPRACTICAS"])));
                                       },
                                       label: Text(
                                         "Guia de Practicas",

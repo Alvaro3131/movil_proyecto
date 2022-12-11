@@ -6,6 +6,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:movil_proyecto/Screens/Home.dart';
@@ -288,11 +289,11 @@ class _MyWidgetState extends State<MyWidget> {
             child: Column(children: <Widget>[
               Row(children: [
                 Container(
-                    width: 150,
+                    width: 120,
                     height: 150,
                     child: Icon(
                       Icons.dashboard_customize_outlined,
-                      size: 150,
+                      size: 100,
                     )),
                 Column(
                   children: [
@@ -340,16 +341,36 @@ class _MyWidgetState extends State<MyWidget> {
                                                     onPressed: () async {
                                                       if (url1 == null ||
                                                           url1 == "") {
-                                                        url1 = "";
-                                                      }
-                                                      final Uri url =
-                                                          Uri.parse(url1);
-                                                      if (!await launchUrl(
-                                                        url,
-                                                        mode: LaunchMode
-                                                            .externalApplication,
-                                                      )) {
-                                                        throw 'Could not launch $url';
+                                                        Fluttertoast.showToast(
+                                                            msg:
+                                                                "Error no hay archivo",
+                                                            toastLength: Toast
+                                                                .LENGTH_SHORT,
+                                                            gravity:
+                                                                ToastGravity
+                                                                    .BOTTOM,
+                                                            timeInSecForIosWeb:
+                                                                1,
+                                                            backgroundColor:
+                                                                Color
+                                                                    .fromRGBO(
+                                                                        1,
+                                                                        71,
+                                                                        118,
+                                                                        1),
+                                                            textColor:
+                                                                Colors.white,
+                                                            fontSize: 16.0);
+                                                      } else {
+                                                        final Uri url =
+                                                            Uri.parse(url1);
+                                                        if (!await launchUrl(
+                                                          url,
+                                                          mode: LaunchMode
+                                                              .externalApplication,
+                                                        )) {
+                                                          throw 'Could not launch $url';
+                                                        }
                                                       }
                                                     },
                                                     child: const Text(
@@ -388,16 +409,36 @@ class _MyWidgetState extends State<MyWidget> {
                                                     onPressed: () async {
                                                       if (url2 == null ||
                                                           url2 == "") {
-                                                        url2 = "";
-                                                      }
-                                                      final Uri url =
-                                                          Uri.parse(url2);
-                                                      if (!await launchUrl(
-                                                        url,
-                                                        mode: LaunchMode
-                                                            .externalApplication,
-                                                      )) {
-                                                        throw 'Could not launch $url';
+                                                        Fluttertoast.showToast(
+                                                            msg:
+                                                                "Error no hay archivo",
+                                                            toastLength: Toast
+                                                                .LENGTH_SHORT,
+                                                            gravity:
+                                                                ToastGravity
+                                                                    .BOTTOM,
+                                                            timeInSecForIosWeb:
+                                                                1,
+                                                            backgroundColor:
+                                                                Color
+                                                                    .fromRGBO(
+                                                                        1,
+                                                                        71,
+                                                                        118,
+                                                                        1),
+                                                            textColor:
+                                                                Colors.white,
+                                                            fontSize: 16.0);
+                                                      } else {
+                                                        final Uri url =
+                                                            Uri.parse(url2);
+                                                        if (!await launchUrl(
+                                                          url,
+                                                          mode: LaunchMode
+                                                              .externalApplication,
+                                                        )) {
+                                                          throw 'Could not launch $url';
+                                                        }
                                                       }
                                                     },
                                                     child: const Text(

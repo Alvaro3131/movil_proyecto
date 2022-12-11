@@ -82,7 +82,14 @@ class _LoginMobile extends State<LoginMobile> {
       });
     } else {
       // Si la llamada no fue exitosa, lanza un error.
-      print(json.decode(response.body));
+      Fluttertoast.showToast(
+          msg: "Error de autentificacion",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Color.fromRGBO(1, 71, 118, 1),
+          textColor: Colors.white,
+          fontSize: 16.0);
     }
   }
 
