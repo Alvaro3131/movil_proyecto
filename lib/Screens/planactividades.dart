@@ -45,7 +45,7 @@ class _PlanActividadesRouteState extends State<PlanActividadesRoute> {
   TextEditingController detalle = TextEditingController();
   String _fecha = '';
   final TextEditingController _textController = TextEditingController();
-
+  String token = "";
   String _fechaf = '';
   final TextEditingController _textControllerf = TextEditingController();
 
@@ -88,6 +88,7 @@ class _PlanActividadesRouteState extends State<PlanActividadesRoute> {
     final response = await http.post(Uri.parse("$backend/api/auth/solicitud"),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
+          'Authorization': 'Bearer $token',
         },
         body: jsonEncode(<String, String>{
           "centro": widget.namecentro,

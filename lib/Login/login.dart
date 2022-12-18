@@ -40,6 +40,7 @@ class _LoginMobile extends State<LoginMobile> {
   bool _isObscure = true;
   bool _isVisible = false;
   Future<void> login() async {
+    print(backend);
     final response = await http.post(Uri.parse("$backend/api/auth"),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
@@ -76,7 +77,8 @@ class _LoginMobile extends State<LoginMobile> {
               postulante.h_clinicas,
               postulante.sol_activas,
               postulante.horas_comunitarias.toString(),
-              postulante.horas_clinicas.toString())
+              postulante.horas_clinicas.toString(),
+              token.accessToken)
           .then((value) {
         Navigator.pushNamed(context, '/home');
       });
@@ -137,7 +139,7 @@ class _LoginMobile extends State<LoginMobile> {
   }
 
   Future<void> guardatos(id, nombre, dni, idrol, codigo, vcomunitarias,
-      vclinicas, activo, hcomunitarias, hclinicas) async {
+      vclinicas, activo, hcomunitarias, hclinicas, token) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setString("id", id);
     await prefs.setString("name", nombre);
@@ -150,6 +152,7 @@ class _LoginMobile extends State<LoginMobile> {
     await prefs.setString("solactivo", activo);
     await prefs.setString("hcomunitarias", hcomunitarias);
     await prefs.setString("hclinicas", hclinicas);
+    await prefs.setString("token", token);
     print(
         "$id, $nombre, $dni, $idrol, $codigo, $vcomunitarias, $vclinicas, $activo,$hcomunitarias, $hclinicas");
   }
