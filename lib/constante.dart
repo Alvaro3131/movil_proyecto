@@ -1,1 +1,1 @@
-String backend = "http://10.40.132.226:3000";
+String backend = "https://backendnodeintegrador-production.up.railway.app";
